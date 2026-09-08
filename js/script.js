@@ -9,12 +9,12 @@ function moverCarrossel()  {
     // 1. Se bater na borda da DIREITA, muda a velocidade para NEGATIVA (começa a voltar)
     // O "- 1" previne travamentos por conta de arredondamento de pixels nos navegadores
     if (carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 1) {
-        velocidade = -10;
+        velocidade = -5;
     }
 
     // 2. Se bater na borda da ESQUERDA (chegar no zero), muda a velocidade para POSITIVA (avança de novo)
     if (carrossel.scrollLeft <= 0) {
-        velocidade = 10;
+        velocidade = 5;
     }
 }
 // Faz moverw a cada 20 milissegundo
