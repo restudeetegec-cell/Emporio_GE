@@ -1,0 +1,161 @@
+/* =========================
+   CONFIGURAÇÕES GERAIS
+   ========================= */
+
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+body {
+    background-image: url ('fundo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Montserrat';
+}
+
+p {
+    color: #333333;
+    text-align: center;
+}
+
+/* =========================
+   CABEÇALHO
+   ========================= */
+
+header {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   OFERTAS
+   ========================= */
+
+#ofertas {
+    width: 90%;
+    max-width: 75rem;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#ofertas h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+#ofertas > p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.oferta p {
+    color: #2A7F62;
+}
+
+h1 {
+    color: #075E68;
+}
+
+/* =========================
+   CARROSSEL
+   ========================= */
+
+.carrossel {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow: hidden;
+    padding: 10px 5px 20px;
+    scroll-behavior: smooth;
+}
+
+/* =========================
+   CARDS DE OFERTAS
+   ========================= */
+
+.oferta {
+    flex: 0 0 260px;
+    width: 260px;
+    background: goldenrod;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    padding: 20px;
+}
+
+.oferta img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.oferta h3 {
+    font-size: 22px;
+    margin: 15px 0 8px;
+}
+
+.oferta p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.oferta button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btt:hover {
+    color:aliceblue;
+    background-color: #37d7ff;
+}
+
+/* =========================
+   CATÁLOGO
+   ========================= */
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Montserrat';
+    color: #123B4A;
+}
+
+.container-geral{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+}
+
+.produtos {
+    flex: 0 0 260px;
+    width: 260px;
+    background: goldenrod;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.item-nome {
+    font-weight: bold;
+    font-family: 'Montserrat';
+}
+
+.item-preco {
+    font-weight: normal;
+}
