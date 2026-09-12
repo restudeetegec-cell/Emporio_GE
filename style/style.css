@@ -13,7 +13,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: Times New Roman;
+    font-family: 'Montserrat';
+}
+
+p {
+    color: #333333;
+    text-align: center;
 }
 
 /* =========================
@@ -49,6 +54,14 @@ header {
     margin-bottom: 30px;
 }
 
+.oferta p {
+    color: #2A7F62;
+}
+
+h1 {
+    color: #075E68;
+}
+
 /* =========================
    CARROSSEL
    ========================= */
@@ -69,7 +82,7 @@ header {
 .oferta {
     flex: 0 0 260px;
     width: 260px;
-    background: white;
+    background: goldenrod;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -105,4 +118,44 @@ header {
 .btt:hover {
     color:aliceblue;
     background-color: #37d7ff;
+}
+
+/* =========================
+   CATÁLOGO
+   ========================= */
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Montserrat';
+    color: #123B4A;
+}
+
+.container-geral{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 1.5rem;
+}
+
+.produtos {
+    flex: 0 0 260px;
+    width: 260px;
+    background: goldenrod;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.item-nome {
+    font-weight: bold;
+    font-family: 'Montserrat';
+}
+
+.item-preco {
+    font-weight: normal;
 }
