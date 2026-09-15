@@ -56,10 +56,15 @@ header {
 
 .oferta p {
     color: #2A7F62;
+    font-weight: bold;
 }
 
 h1 {
     color: #075E68;
+}
+
+.oferta button {
+    font-weight: bold;
 }
 
 /* =========================
