@@ -9,10 +9,7 @@
 }
 
 body {
-    background-image: url ('fundo.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-color:#2A7F62;
     font-family: 'Montserrat';
 }
 
@@ -44,14 +41,16 @@ header {
     text-align: center;
 }
 
-#ofertas h1 {
+#ofertas h1, h2 {
     font-size: 42px;
     margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-#ofertas > p {
+#ofertas > p, #catalogo > p {
     font-size: 18px;
     margin-bottom: 30px;
+    color:#e0f2fe;
 }
 
 .oferta p {
@@ -163,4 +162,87 @@ h2 {
 
 .item-preco {
     font-weight: normal;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+    position: relative;
+    background-color: goldenrod;
+    color: #ffffff;
+    padding: 40px 0 20px 0; /* Espaçamento interno */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 80px; /* Dá espaço para a onda subir sem cobrir o catálogo */
+}
+
+/* Área que limita o movimento das ondas */
+.footer__waves {
+    position: absolute;
+    top: -55px; /* Empurra o bloco da onda para cima do footer */
+    left: 0;
+    width: 100%;
+    height: 60px;
+    overflow: hidden;
+    z-index: 1; /* Garante que a onda fique sobre o fundo verde */
+}
+
+/* O elemento base da onda */
+.footer__waves .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    /* SVG Codificado universalmente na cor goldenrod (#daa520) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,17,84.4,22.81,151.78,36.1,234.28,62.59,321.39,56.44Z' fill='%23daa520'/%3E%3C/svg%3E");
+    background-size: 50% 100%;
+    background-repeat: repeat-x;
+}
+
+/* Onda da Frente (Movimento normal) */
+#wave1 {
+    z-index: 10;
+    opacity: 1;
+    animation: moverMar 12s linear infinite;
+}
+
+/* Onda de Trás (Dá profundidade e realismo) */
+#wave2 {
+    z-index: 5;
+    opacity: 0.4; /* Mais transparente */
+    bottom: 4px;  /* Levemente desalinhada para efeito 3D */
+    animation: moverMarInverso 16s linear infinite; /* Direção oposta */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.slogan {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ==========================================
+   ANIMAÇÕES DAS ONDAS
+   ========================================== */
+@keyframes moverMar {
+  0% { background-position-x: 0; }
+  100% { background-position-x: -1200px; }
+}
+
+@keyframes moverMarInverso {
+  0% { background-position-x: 0; }
+  100% { background-position-x: 1200px; }
 }
