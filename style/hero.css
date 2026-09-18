@@ -3,7 +3,7 @@
     width: 100%;
     height: 100vh; /* Ocupa a tela inteira */
     overflow: hidden;
-    background-color: #000; /* Cor de fundo para o slider */
+    background-color: #f4f4f4; /* Cor de fundo para o slider */
 }
 
 .hero-slide {
@@ -15,13 +15,24 @@
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 1s ease-in-out; /* Tempo da transição de fade */
+    transition: opacity 1.5s ease-in-out; /* Tempo da transição de fade */
     z-index: 1;
 }
 
 .hero-slide.active {
     opacity: 1;
     z-index: 2; /* Garante que o slide ativo fique acima dos outros */
+}
+
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* Sombra escura sutil para melhorar a legibilidade */
+    z-index: 2;
 }
 
 /* Estilização básica para o conteúdo flutuante por cima */
@@ -31,8 +42,62 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #fff;
+    color: #ffffff;
     z-index: 10;
-    width: 80%;
+    width: 90%;
+    max-width: 900px;
 }
 
+/* Ajuste finíssimo para a imagem da logo no centro */
+.logo-central {
+    margin-bottom: 20px;
+}
+
+.logo-central img {
+    max-width: 180px; /* Controla o tamanho máximo da logo para não ficar gigante */
+    height: auto;
+    display: inline-block;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)); /* Sombra para destacar a logo na imagem */
+}
+
+.hero-content h1 {
+    font-size: 2.6rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    letter-spacing: 0.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid goldenrod; /* Borda fina dourada minimalista */
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: goldenrod; /* Cor dourada elegante ao passar o mouse */
+    color: #000000;
+}

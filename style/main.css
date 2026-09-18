@@ -1,5 +1,5 @@
 /* =========================
-   CONFIGURAÇÕES GERAIS
+   CONFIGURAÇÕES GERAIS (Preto e Dourado)
    ========================= */
 
 * {
@@ -9,12 +9,13 @@
 }
 
 body {
-    background-color:#2A7F62;
-    font-family: 'Montserrat';
+    background-color: #0b0b0b; /* Fundo preto sofisticado */
+    font-family: 'Montserrat', sans-serif;
+    color: #e0e0e0;            /* Texto claro padrão */
 }
 
 p {
-    color: #333333;
+    color: #cccccc;
     text-align: center;
 }
 
@@ -32,25 +33,17 @@ p {
 #ofertas h1, h2 {
     font-size: 42px;
     margin-bottom: 10px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #ofertas > p, #catalogo > p {
     font-size: 18px;
     margin-bottom: 30px;
-    color:#e0f2fe;
-}
-
-.oferta p {
-    color: #2A7F62;
-    font-weight: bold;
+    color: #aaaaaa;
 }
 
 h1 {
-    color: #075E68;
-}
-
-.oferta button {
+    color: goldenrod;
     font-weight: bold;
 }
 
@@ -62,22 +55,33 @@ h1 {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    overflow: hidden;
+    overflow-x: auto;
     padding: 10px 5px 20px;
     scroll-behavior: smooth;
 }
 
+/* Esconde a barra de rolagem em navegadores modernos (Chrome, Safari, Edge) */
+.carrossel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Esconde a barra de rolagem no Firefox */
+.carrossel {
+    scrollbar-width: none;
+}
+
 /* =========================
-   CARDS DE OFERTAS
+   CARDS DE OFERTAS (Estilo Dark & Gold)
    ========================= */
 
 .oferta {
     flex: 0 0 260px;
     width: 260px;
-    background: goldenrod;
+    background: #161616; /* Fundo do card escuro */
+    border: 1px solid goldenrod; /* Borda elegante em dourado */
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.15); /* Sutil brilho dourado */
     text-align: center;
     padding: 20px;
 }
@@ -86,30 +90,37 @@ h1 {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .oferta h3 {
     font-size: 22px;
     margin: 15px 0 8px;
+    color: #ffffff;
 }
 
 .oferta p {
     font-size: 18px;
     font-weight: bold;
+    color: goldenrod; /* Preço em destaque dourado */
     margin-bottom: 15px;
 }
 
 .oferta button {
     padding: 10px 20px;
-    border: none;
+    border: 1px solid goldenrod;
+    background-color: transparent;
+    color: goldenrod;
     border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-.btt:hover {
-    color:aliceblue;
-    background-color: #37d7ff;
+.oferta button:hover {
+    color: #0b0b0b;
+    background-color: goldenrod;
 }
 
 /* =========================
@@ -119,37 +130,42 @@ h1 {
 h2 {
     text-align: center;
     font-size: 2rem;
-    font-family: 'Montserrat';
-    color: #123B4A;
+    font-family: 'Montserrat', sans-serif;
+    color: goldenrod;
 }
 
-.container-geral{
+.container-geral {
     display: flex;
     flex-direction: row;
     gap: 30px;
     flex-wrap: wrap;
+    justify-content: center;
     padding: 1.5rem;
 }
 
 .produtos {
     flex: 0 0 260px;
     width: 260px;
-    background: goldenrod;
+    background: #161616;
+    border: 1px solid rgba(218, 165, 32, 0.4); /* Borda dourada suave */
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     text-align: center;
-    align-items: center;
-    padding: 10px;
+    padding: 20px;
 }
 
 .item-nome {
     font-weight: bold;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .item-preco {
     font-weight: normal;
+    color: goldenrod;
 }
 
 /* =========================
@@ -158,51 +174,52 @@ h2 {
 
 .footer {
     position: relative;
-    background-color: goldenrod;
+    background-color: goldenrod; /* Rodapé escuro elegante */
     color: #ffffff;
-    padding: 40px 0 20px 0; /* Espaçamento interno */
+    padding: 40px 0 20px 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
-    margin-top: 80px; /* Dá espaço para a onda subir sem cobrir o catálogo */
+    margin-top: 80px;
+    border-top: 1px solid rgba(218, 165, 32, 0.3);
+    font-weight: bold;
 }
 
 /* Área que limita o movimento das ondas */
 .footer__waves {
     position: absolute;
-    top: -55px; /* Empurra o bloco da onda para cima do footer */
+    top: -55px;
     left: 0;
     width: 100%;
     height: 60px;
     overflow: hidden;
-    z-index: 1; /* Garante que a onda fique sobre o fundo verde */
+    z-index: 1;
 }
 
-/* O elemento base da onda */
+/* O elemento base da onda em tom dourado */
 .footer__waves .wave {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 200%;
     height: 100%;
-    /* SVG Codificado universalmente na cor goldenrod (#daa520) */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,17,84.4,22.81,151.78,36.1,234.28,62.59,321.39,56.44Z' fill='%23daa520'/%3E%3C/svg%3E");
     background-size: 50% 100%;
     background-repeat: repeat-x;
 }
 
-/* Onda da Frente (Movimento normal) */
+/* Onda da Frente */
 #wave1 {
     z-index: 10;
     opacity: 1;
     animation: moverMar 12s linear infinite;
 }
 
-/* Onda de Trás (Dá profundidade e realismo) */
+/* Onda de Trás */
 #wave2 {
     z-index: 5;
-    opacity: 0.4; /* Mais transparente */
-    bottom: 4px;  /* Levemente desalinhada para efeito 3D */
-    animation: moverMarInverso 16s linear infinite; /* Direção oposta */
+    opacity: 0.4;
+    bottom: 4px;
+    animation: moverMarInverso 16s linear infinite;
 }
 
 .footer-container {
@@ -214,12 +231,14 @@ h2 {
 .footer p {
     margin: 5px 0;
     font-size: 14px;
+    color: #000000;
 }
 
 .slogan {
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 10px;
+    color: goldenrod;
 }
 
 /* ==========================================

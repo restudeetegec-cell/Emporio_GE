@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="style/main.css">
     <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/hero.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -23,17 +24,34 @@
                     <a href="index.html" aria-current="home">HOME</a>
                 </li>
                 <li>
-                    <a href="/ofertas" aria-current="ofertas">OFERTAS</a>
+                    <a href="#ofertas" aria-current="ofertas">OFERTAS</a>
                 </li>
                 <li>
-                    <a href="/contato" aria-current="contato">CONTATO</a>
+                    <a href="#contato" aria-current="contato">CONTATO</a>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <!--OFERTAS-->
+<main>
+    <section class="hero-slider">
+        <!-- Imagens do Slider -->
+        <div class="hero-slide active" style="background-image: url('/images/peixe.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('/images/peixaria.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('/images/produto.jpg');"></div>
+
+        <!-- Conteúdo fixo por cima do slider -->
+        <div class="hero-content">
+            <div class="logo-central"><img src="images/logo.png" alt="Logo do Empório GE"></div>
+            <h1>Bem-vindo ao Empório GE</h1>
+            <p>O melhor pescado da região</p>
+            <div class="hero-buttons">
+                <a href="#ofertas" class="hero-button">Ver Ofertas</a>
+                <a href="#contato" class="hero-button">Contato</a>
+            </div>
+        </div>
+    </section> <!-- Fechamento correto da section do slider -->
+
         <section id="ofertas">
         
         <h1>OFERTAS</h1>
@@ -150,5 +168,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/hero.js"></script>
 </body>
 </html>
