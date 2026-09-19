@@ -52,7 +52,21 @@ O projeto utiliza tecnologias fundamentais para o desenvolvimento web:
 
 - **HTML5** — estruturação das páginas;
 - **CSS3** — estilização e organização visual;
-- **JavaScript** — implementação de comportamentos e interações.
+- **JavaScript** — implementação de comportamentos e interações;
+- **Nunjucks** — renderização dos templates HTML;
+- **Vercel Functions e CDN** — entrega dinâmica da página e dos arquivos estáticos.
+
+## 🚀 Desenvolvimento local
+
+Instale as dependências e inicie o ambiente da Vercel:
+
+```bash
+npm install
+npm run dev
+```
+
+A página inicial fica disponível em `http://localhost:3000` por padrão. Execute
+os testes com `npm test`.
 
 ---
 
@@ -60,6 +74,9 @@ O projeto utiliza tecnologias fundamentais para o desenvolvimento web:
 
 ```text
 Emporio_GE/
+│
+├── functions/
+│   └── index.js
 │
 ├── images/
 │   ├── atum.jpg
@@ -85,8 +102,13 @@ Emporio_GE/
 │   ├── hero.css
 │   └── main.css
 │
-├── index.html
+├── templates/
+│   └── index.html
+│
+├── package.json
+├── vercel.json
 └── README.md
+```
 
 
 ## 👥 Equipe
