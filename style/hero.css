@@ -57,7 +57,7 @@
     max-width: 180px; /* Controla o tamanho máximo da logo para não ficar gigante */
     height: auto;
     display: inline-block;
-    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)); /* Sombra para destacar a logo na imagem */
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7)) brightness(1.1); /* Sombra para destacar a logo na imagem */
 }
 
 .hero-content h1 {
