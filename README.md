@@ -1,63 +1,92 @@
+## 🖥️ Prévia do projeto
+
+> A imagem abaixo apresenta uma prévia do site em desenvolvimento.
+
+![Prévia do site do Empório GE](images/previa.png)
+
+---
+
 # 🐟 Empório GE
 
-Este projeto foi desenvolvido como parte da disciplina Atividades
-Interdisciplinares de Extensão I, na área temática de Tecnologia.
+Site institucional e catálogo digital desenvolvido para o **Empório GE**, uma peixaria local, como parte da disciplina **Atividades Interdisciplinares de Extensão I**, na área temática de Tecnologia.
 
-A proposta consiste em aplicar conhecimentos de tecnologia da informação na resolução de necessidades identificadas
-em um estabelecimento local, buscando gerar benefícios tanto para o negócio quanto para seus clientes.
+O projeto busca aplicar conhecimentos de Tecnologia da Informação na criação de soluções que atendam às necessidades identificadas no estabelecimento, contribuindo para a divulgação dos produtos e para a melhoria de processos internos.
+
+---
 
 ## 📚 Sobre o projeto
 
-O Empório GE é uma peixaria que comercializa diferentes tipos de pescados. 
- Como parte da disciplina de Atividades Interdisciplinares de Extensão I, 
-foi identificada a oportunidade de aplicar soluções tecnológicas para auxiliar 
-na divulgação dos produtos e na organização dos processos internos do estabelecimento.
+O **Empório GE** é uma peixaria que comercializa diferentes tipos de pescados.
 
-A partir desse diagnóstico, o projeto foi dividido em duas principais soluções:
+Durante o desenvolvimento do projeto de extensão, foi identificada a oportunidade de utilizar soluções tecnológicas para auxiliar tanto na **divulgação dos produtos** quanto na **organização dos processos internos** do estabelecimento.
 
-- 🌐 Desenvolvimento de um site para apresentação dos produtos e ofertas do Empório GE;
-- 📱 Desenvolvimento de um aplicativo para auxiliar no controle de entrada e saída de produtos.
+A proposta foi dividida em duas soluções principais:
 
-Este repositório corresponde ao desenvolvimento do **site do Empório GE**.
+- 🌐 **Site:** apresentação dos produtos, ofertas e informações do Empório GE;
+- 📱 **Aplicativo:** auxílio no controle de entrada e saída de produtos.
+
+Este repositório é destinado ao desenvolvimento do **site do Empório GE**.
+
+---
 
 ## 🎯 Objetivos
 
 ### Objetivo geral
 
-Desenvolver uma solução web para modernizar a apresentação dos produtos do Empório GE, 
-facilitando o acesso dos clientes às ofertas e ao catálogo de produtos.
+Desenvolver uma solução web para modernizar a apresentação dos produtos do Empório GE, facilitando o acesso dos clientes às ofertas e ao catálogo de produtos.
 
 ### Objetivos específicos
 
 - Criar uma presença digital para o estabelecimento;
-- Apresentar os produtos disponíveis de forma organizada;
-- Destacar ofertas e promoções por meio de um carrossel;
+- Apresentar os produtos de forma organizada;
+- Destacar ofertas e promoções;
 - Desenvolver uma interface simples e intuitiva;
-- Facilitar o acesso dos clientes às informações dos produtos;
+- Facilitar o acesso às informações dos produtos;
 - Criar uma estrutura que possa futuramente receber funcionalidades relacionadas a pedidos e delivery.
+
+---
 
 ## 💻 Tecnologias utilizadas
 
-- HTML5
-- CSS3
-- JavaScript
+O projeto utiliza tecnologias fundamentais para o desenvolvimento web:
 
-## 🗂️ Estrutura atual do projeto
+- **HTML5** — estruturação das páginas;
+- **CSS3** — estilização e organização visual;
+- **JavaScript** — implementação de comportamentos e interações.
 
+---
+
+## 🗂️ Estrutura do projeto
+
+```text
 Emporio_GE/
 │
-├── index.html
-│
 ├── images/
-│   ├── imagens dos produtos
-│   ├── logo
-│   └── imagem de fundo
+│   ├── atum.jpg
+│   ├── Corvina.webp
+│   ├── fileti.webp
+│   ├── fundo.png
+│   ├── Logo.png
+│   ├── peixaria.jpg
+│   ├── previa.jpg
+│   ├── peixe.jpg
+│   ├── produto.jpg
+│   ├── Sardinha.jpg
+│   ├── tilapia.jpg
+│   └── zap.png
 │
 ├── js/
+│   ├── header.js
+│   ├── hero.js
 │   └── script.js
 │
-└── style/
-    └── style.css
+├── style/
+│   ├── header.css
+│   ├── hero.css
+│   └── main.css
+│
+├── index.html
+└── README.md
 
 
 ## 👥 Equipe
@@ -72,10 +101,3 @@ Os discentes em questão:
 - Guilherme Santos Pessoa De Melo              - Rafael Arcanjo dos Santos Alves
 - James de Sousa Veríssimo                     - Rayane Luma Rodrigues da Silva
 - Maick Ferreira Nascimento                    - Victor Gabriel Baracho da Rocha
-
-
-### ⚠️ alguns detalhes no código que vale guardar para depois 
-
-- O fundo está sendo colocado diretamente no `<body>` com `background="images/fundo.png"`, enquanto o CSS também possui uma regra de `background-image`. Vale escolher **um único lugar** depois.  
-- O CSS ainda está com `Times New Roman` (isso parece ser provisório e podemos trabalhar uma tipografia mais adequada quando formos definir a identidade visual). 
-- Temos `logo.png` e `zap.png` no repositório, o que combina com aquela ideia que tínhamos de logo/marca-d'água e contato.
