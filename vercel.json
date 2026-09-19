@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "builds": [
+    {
+      "src": "functions/**/*.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["templates/**"]
+      }
+    },
+    { "src": "images/**", "use": "@vercel/static" },
+    { "src": "js/**", "use": "@vercel/static" },
+    { "src": "style/**", "use": "@vercel/static" }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/functions/index.js" },
+    { "source": "/index.html", "destination": "/functions/index.js" }
+  ]
+}
