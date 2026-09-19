@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empório GE</title>
+    
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/hero.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="images/Logo.png" type="image/png">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="site-header__nav" aria-label="Navegação principal">
+            <ul class="site-header__links">
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <li><a href="#catalogo">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+
+            <div class="site-header__actions">
+                <a class="site-header__featured-link" href="#ofertas">Ofertas</a>
+
+                <button
+                    class="site-header__hamburger"
+                    type="button"
+                    aria-label="Abrir menu"
+                    aria-controls="mobile-navigation"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <div
+            class="mobile-nav"
+            id="mobile-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navegação do site"
+            hidden
+        >
+            <button class="mobile-nav__close" type="button" aria-label="Fechar menu">&times;</button>
+            <a href="index.html" aria-current="page">Home</a>
+            <a href="#ofertas">Ofertas</a>
+            <a href="#catalogo">Produtos</a>
+            <a href="#contato">Contato</a>
+        </div>
+    </header>
+
+<main>
+    <section class="hero-slider">
+        <!-- Imagens do Slider -->
+        <div class="hero-slide active" style="background-image: url('/images/peixe.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('/images/peixaria.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('/images/produto.jpg');"></div>
+
+        <!-- Conteúdo fixo por cima do slider -->
+        <div class="hero-content">
+            <div class="logo-central"><img src="images/Logo.png" alt="Logo do Empório GE"></div>
+            <h1>Bem-vindo ao Empório GE</h1>
+            <p>O melhor pescado da região</p>
+            <div class="hero-buttons">
+                <a href="#ofertas" class="hero-button">Ver Ofertas</a>
+                <a href="#contato" class="hero-button">Contato</a>
+            </div>
+        </div>
+    </section> <!-- Fechamento correto da section do slider -->
+
+        <section id="ofertas">
+        
+        <h1>OFERTAS</h1>
+            <p>Ofertas especiais semanais. <strong>Não perca!</strong></p>
+
+            <div class="carrossel">
+                <div class="oferta">
+                    <img src="images/tilapia.jpg" alt="Tilápia">
+                    <h3>Tilápia</h3>
+                    <p>R$ 22,00</p>
+                    <button type="button" class="btt">Ver oferta</button>
+                </div>
+
+                <div class="oferta">
+                    <img src="images/Sardinha.jpg" alt="Sardinha">
+                    <h3>Sardinha</h3>
+                    <p>R$ 12,00</p>
+                    <button type="button" class="btt">Ver oferta</button>
+                </div>
+
+                <div class="oferta">
+                    <img src="images/fileti.webp" alt="Filé Tilápia">
+                    <h3>Filé Tilápia</h3>
+                    <p>R$ 24,00</p>
+                    <button type="button" class="btt">Ver oferta</button>
+                </div>
+
+                <div class="oferta">
+                    <img src="images/atum.jpg" alt="Atum">
+                    <h3>Atum</h3>
+                    <p>R$ 32,00</p>
+                    <button type="button" class="btt">Ver oferta</button>
+                </div>
+
+                <div class="oferta">
+                    <img src="images/Corvina.webp" alt="Corvina">
+                    <h3>Corvina</h3>
+                    <p>R$ 23,00</p>
+                    <button type="button" class="btt">Ver oferta</button>
+                </div>
+            </div>
+        </section>
+
+        <!--CATÁLOGO-->
+        <section id="catalogo">
+            
+            <h2>Catálogo</h2>
+            <p>Confira nossos produtos.</p>
+
+            <br>
+
+            <!--produtos-->
+
+            <div class="container-geral">
+
+                <!-- Primeiro Peixe -->
+
+                <div class="produtos">
+                    <span class="item-nome">Tilápia</span>
+                    <span class="item-preco">R$ 28,00</span>
+                </div>
+            
+                <!-- Segundo Peixe -->
+                <div class="produtos">
+                    <span class="item-nome">Sardinha</span>
+                    <span class="item-preco">R$ 15,00</span>
+                </div>
+            
+                <!-- Terceiro Peixe -->
+                <div class="produtos">
+                    <span class="item-nome">Filé de Tilápia</span>
+                    <span class="item-preco">R$ 30,00</span>
+                </div>
+
+                <div class="produtos">
+                    <span class="item-nome">Atum</span>
+                    <span class="item-preco">R$ 36,00</span>
+                </div>
+            
+                <!-- Segundo Peixe -->
+                <div class="produtos">
+                    <span class="item-nome">Corvina</span>
+                    <span class="item-preco">R$ 25,00</span>
+                </div>
+            
+                <!-- Terceiro Peixe -->
+                <div class="produtos">
+                    <span class="item-nome">Peixe Palhaço</span>
+                    <span class="item-preco">R$ 50,00</span>
+                </div>
+            
+            </div>
+
+        </section>
+
+        <!--outras seções futuramente-->
+
+    </main>
+
+
+    <footer class="footer" id="contato">
+
+        <div class="footer__waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+        </div>       
+
+        <div class="footer-container">
+            <p>&copy; 2026 Empório GE. Todos os direitos reservados.</p>
+            
+            <p class="slogan">🐟 O melhor pescado da região</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/hero.js"></script>
+    <script src="js/header.js"></script>
+</body>
+</html>
