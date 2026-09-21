@@ -137,3 +137,27 @@ body.mobile-nav-open {
         display: none;
     }
 }
+
+.border_search {
+  position: relative;
+  border-radius: 5px;
+  border: solid rgb(0, 0, 0);
+  right: -150px;
+}
+.search_box{
+    border: none;
+    outline: none;
+    font-family: 'Times New Roman', Times, serifs;
+}
+.loupe {
+ position:absolute;
+  right: 2px;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  pointer-events: none;
+  cursor: pointer;
+  opacity: 0.6;
+}
+*/
