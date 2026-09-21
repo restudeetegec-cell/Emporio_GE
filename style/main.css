@@ -20,6 +20,19 @@ p {
 }
 
 /* =========================
+   BARRA DE PESQUISA
+   ========================= */
+
+.border_search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 180px;
+}
+
+/* =========================
    OFERTAS
    ========================= */
 
