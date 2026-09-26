@@ -25,11 +25,6 @@
                 <li><a href="#contato">Contato</a></li>
             </ul>
 
-            <div class="border_search"><!--Testando barra de Pesquisa-->
-                <input class="search_box" type="text" placeholder="Pesquisar..."/>
-                <img class="loupe" src="images/lupa.png" alt="buscar">
-            </div>
-
             <div class="site-header__actions">
                 <a class="site-header__featured-link" href="#ofertas">Ofertas</a>
 
@@ -64,6 +59,7 @@
     </header>
 
 <main>
+
     <section class="hero-slider">
         <!-- Imagens do Slider -->
         <div class="hero-slide active" style="background-image: url('/images/peixe.jpg');"></div>
@@ -82,122 +78,126 @@
         </div>
     </section> <!-- Fechamento correto da section do slider -->
 
-        <section id="ofertas">
+
+    <section id="ofertas">
         
         <h1>OFERTAS</h1>
-            <p>Ofertas especiais semanais. <strong>Não perca!</strong></p>
+        <p>Ofertas especiais semanais. <strong>Não perca!</strong></p>
 
-            <div class="carrossel">
-                <div class="oferta">
-                    <img src="images/tilapia.jpg" alt="Tilápia">
-                    <h3>Tilápia</h3>
-                    <p>R$ 22,00</p>
-                    <button type="button" class="btt">Ver oferta</button>
-                </div>
+        <div class="carrossel">
 
-                <div class="oferta">
-                    <img src="images/Sardinha.jpg" alt="Sardinha">
-                    <h3>Sardinha</h3>
-                    <p>R$ 12,00</p>
-                    <button type="button" class="btt">Ver oferta</button>
-                </div>
-
-                <div class="oferta">
-                    <img src="images/fileti.webp" alt="Filé Tilápia">
-                    <h3>Filé Tilápia</h3>
-                    <p>R$ 24,00</p>
-                    <button type="button" class="btt">Ver oferta</button>
-                </div>
-
-                <div class="oferta">
-                    <img src="images/atum.jpg" alt="Atum">
-                    <h3>Atum</h3>
-                    <p>R$ 32,00</p>
-                    <button type="button" class="btt">Ver oferta</button>
-                </div>
-
-                <div class="oferta">
-                    <img src="images/Corvina.webp" alt="Corvina">
-                    <h3>Corvina</h3>
-                    <p>R$ 23,00</p>
-                    <button type="button" class="btt">Ver oferta</button>
-                </div>
-            </div>
-        </section>
-
-        <!--CATÁLOGO-->
-        <section id="catalogo">
-            
-            <h2>Catálogo</h2>
-            <p>Confira nossos produtos.</p>
-
-            <br>
-
-            <!--produtos-->
-
-            <div class="container-geral">
-
-                <!-- Primeiro Peixe -->
-
-                <div class="produtos">
-                    <span class="item-nome">Tilápia</span>
-                    <span class="item-preco">R$ 28,00</span>
-                </div>
-            
-                <!-- Segundo Peixe -->
-                <div class="produtos">
-                    <span class="item-nome">Sardinha</span>
-                    <span class="item-preco">R$ 15,00</span>
-                </div>
-            
-                <!-- Terceiro Peixe -->
-                <div class="produtos">
-                    <span class="item-nome">Filé de Tilápia</span>
-                    <span class="item-preco">R$ 30,00</span>
-                </div>
-
-                <div class="produtos">
-                    <span class="item-nome">Atum</span>
-                    <span class="item-preco">R$ 36,00</span>
-                </div>
-            
-                <!-- Segundo Peixe -->
-                <div class="produtos">
-                    <span class="item-nome">Corvina</span>
-                    <span class="item-preco">R$ 25,00</span>
-                </div>
-            
-                <!-- Terceiro Peixe -->
-                <div class="produtos">
-                    <span class="item-nome">Peixe Palhaço</span>
-                    <span class="item-preco">R$ 50,00</span>
-                </div>
-            
+            <div class="oferta">
+                <img src="images/tilapia.jpg" alt="Tilápia">
+                <h3>Tilápia</h3>
+                <p>R$ 22,00</p>
+                <button type="button" class="btt">Ver oferta</button>
             </div>
 
-        </section>
+            <div class="oferta">
+                <img src="images/Sardinha.jpg" alt="Sardinha">
+                <h3>Sardinha</h3>
+                <p>R$ 12,00</p>
+                <button type="button" class="btt">Ver oferta</button>
+            </div>
 
-        <!--outras seções futuramente-->
+            <div class="oferta">
+                <img src="images/fileti.webp" alt="Filé Tilápia">
+                <h3>Filé Tilápia</h3>
+                <p>R$ 24,00</p>
+                <button type="button" class="btt">Ver oferta</button>
+            </div>
 
-    </main>
+            <div class="oferta">
+                <img src="images/atum.jpg" alt="Atum">
+                <h3>Atum</h3>
+                <p>R$ 32,00</p>
+                <button type="button" class="btt">Ver oferta</button>
+            </div>
 
+            <div class="oferta">
+                <img src="images/Corvina.webp" alt="Corvina">
+                <h3>Corvina</h3>
+                <p>R$ 23,00</p>
+                <button type="button" class="btt">Ver oferta</button>
+            </div>
 
-    <footer class="footer" id="contato">
-
-        <div class="footer__waves">
-            <div class="wave" id="wave1"></div>
-            <div class="wave" id="wave2"></div>
-        </div>       
-
-        <div class="footer-container">
-            <p>&copy; 2026 Empório GE. Todos os direitos reservados.</p>
-            
-            <p class="slogan">🐟 O melhor pescado da região</p>
         </div>
-    </footer>
+    </section>
 
-    <script src="js/script.js"></script>
-    <script src="js/hero.js"></script>
-    <script src="js/header.js"></script>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo">
+
+        <div class="catalogo-header">
+
+            <h2>Catálogo</h2>
+
+            <button
+                id="abrirPesquisa"
+                type="button"
+                aria-label="Pesquisar produtos"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="produtos" id="listaProdutos">
+            <!-- Os produtos serão criados pelo JavaScript -->
+        </div>
+
+    </section>
+
+
+    <!-- PESQUISA -->
+    <div class="search-overlay" id="searchOverlay">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="campoPesquisa"
+                placeholder="Pesquisar produtos..."
+                autocomplete="off"
+            >
+
+            <button
+                id="fecharPesquisa"
+                type="button"
+                aria-label="Fechar pesquisa"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- outras seções futuramente -->
+
+</main>
+
+
+<footer class="footer" id="contato">
+
+    <div class="footer__waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+    </div>       
+
+    <div class="footer-container">
+        <p>&copy; 2026 Empório GE. Todos os direitos reservados.</p>
+        
+        <p class="slogan">🐟 O melhor pescado da região</p>
+    </div>
+
+</footer>
+
+
+<script src="js/script.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/header.js"></script>
+
 </body>
 </html>

@@ -140,46 +140,270 @@ h1 {
    CATÁLOGO
    ========================= */
 
-h2 {
-    text-align: center;
-    font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
+#catalogo {
+    width: 90%;
+    max-width: 1200px;
+    margin: 70px auto;
+}
+
+.catalogo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.catalogo-header h2 {
+    font-size: 42px;
+    margin: 0;
+    font-weight: 700;
     color: goldenrod;
 }
 
-.container-geral {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1.5rem;
-}
+/* ========================================
+   GRID DE PRODUTOS
+======================================== */
 
 .produtos {
-    flex: 0 0 260px;
-    width: 260px;
-    background: #161616;
-    border: 1px solid rgba(218, 165, 32, 0.4); /* Borda dourada suave */
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* ========================================
+   CARD DO PRODUTO
+======================================== */
+
+.produto {
+    position: relative;
+
     text-align: center;
-    padding: 20px;
+
+    font-family: "Montserrat", sans-serif;
+
+    border: 1px solid #dca900;
+    border-radius: 16px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.item-nome {
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+.produto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px rgba(218, 165, 32, 0.35);
+}
+
+/* IMAGEM */
+
+.produto-imagem {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+}
+
+.produto-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    margin-bottom: 8px;
+    transition: transform 0.3s ease;
 }
 
-.item-preco {
-    font-weight: normal;
-    color: goldenrod;
+/* Efeito ao passar o mouse */
+
+.produto:hover .produto-imagem img {
+    transform: scale(1.04);
 }
+
+/* NOME */
+
+.produto h3 {
+    margin: 15px 0 8px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+/* PREÇO */
+
+.produto-preco {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* ========================================
+   PESQUISA
+======================================== */
+
+.search-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+/* Abrir pesquisa */
+
+#abrirPesquisa {
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid #dca900;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #dca900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+#abrirPesquisa:hover {
+    background-color: #dca900;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.search-overlay.ativo {
+    display: flex;
+}
+
+
+/* CAIXA BRANCA */
+
+.search-box {
+    width: 580px;
+    max-width: 90%;
+
+    height: 60px;
+
+    background: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 20px;
+
+    box-sizing: border-box;
+}
+
+/* CAMPO DE TEXTO */
+
+.search-box input {
+    flex: 1;
+
+    height: 100%;
+
+    border: none;
+    outline: none;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 17px;
+}
+
+
+/* BOTÃO FECHAR */
+
+#fecharPesquisa {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+
+/* ========================================
+   BOTÃO DE PESQUISA DO HEADER
+======================================== */
+
+.site-header__search {
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    padding: 8px;
+}
+
+
+/* ========================================
+   RESPONSIVIDADE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 25px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    #catalogo {
+        width: 92%;
+
+        margin: 60px auto;
+    }
+
+
+    .catalogo-header h2 {
+        font-size: 32px;
+    }
+
+
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+
+    .produto h3 {
+        font-size: 14px;
+    }
+
+
+    .produto-preco {
+        font-size: 14px;
+    }
+
+}
+
 
 /* =========================
    FOOTER
