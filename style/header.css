@@ -1,5 +1,4 @@
 .site-header {
-    --header-white: ; /* Corrigir isso aqui por conta do botão hambúrger, quero colocar a cor preta e dourada para combinar */
     --header-black: goldenrod;
     --header-border: goldenrod;
     --header-overlay: rgba(0, 0, 0, 0.95);
