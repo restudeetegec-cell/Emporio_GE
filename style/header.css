@@ -1,11 +1,13 @@
 .site-header {
-    --header-white: #fff;
-    --header-black: #111;
+    --header-white: ; /* Corrigir isso aqui por conta do botão hambúrger, quero colocar a cor preta e dourada para combinar */
+    --header-black: goldenrod;
+    --header-border: goldenrod;
     --header-overlay: rgba(0, 0, 0, 0.95);
 
     width: 100%;
     background: var(--header-white);
     color: var(--header-black);
+    border-bottom: 1px solid var(--header-border);
 }
 
 .site-header__nav {
@@ -44,7 +46,7 @@
     line-height: 1.4;
     text-decoration: none;
     text-transform: uppercase;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .site-header a:hover {
@@ -52,9 +54,10 @@
 }
 
 .site-header a:focus-visible,
-.site-header button:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 5px;
+.site-header button:focus-visible
+.site-header input:focus-visible {
+    outline: 2px solid var(--header-black);
+    outline-offset: 3px;
 }
 
 .site-header__featured-link {
@@ -160,4 +163,59 @@ body.mobile-nav-open {
   cursor: pointer;
   opacity: 0.6;
 }
-*/
+
+
+/* ==========================================================================
+   Botão Flutuante do WhatsApp (Acompanha a Rolagem)
+   ========================================================================== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    background-color: #111111;
+    color: goldenrod;
+    border: 1px solid goldenrod;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+    transform: translateY(-3px);
+    background-color: goldenrod;
+    color: black;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-float__icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.whatsapp-float__text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 30rem) {
+    .whatsapp-float {
+        bottom: 16px;
+        right: 16px;
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    .whatsapp-float__text {
+        display: none; /* Em telas menores esconde o texto e mantém apenas o ícone redondo */
+    }
+}

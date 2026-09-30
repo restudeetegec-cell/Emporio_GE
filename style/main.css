@@ -10,7 +10,7 @@
 
 body {
     background-color: #0b0b0b; /* Fundo preto sofisticado */
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Courier New', sans-serif;
     color: #e0e0e0;            /* Texto claro padrão */
 }
 
@@ -179,7 +179,7 @@ h1 {
 
     text-align: center;
 
-    font-family: "Montserrat", sans-serif;
+    font-family: "Courier New", sans-serif;
 
     border: 1px solid #dca900;
     border-radius: 16px;
