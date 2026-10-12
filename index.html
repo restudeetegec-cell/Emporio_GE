@@ -18,45 +18,51 @@
 
 <body>
     <header class="site-header">
-        <nav class="site-header__nav" aria-label="Navegação principal">
-            <ul class="site-header__links">
-                <li><a href="index.html" aria-current="page">Home</a></li>
-                <li><a href="#catalogo">Produtos</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
+    <nav class="site-header__nav" aria-label="Navegação principal">
 
-            <div class="site-header__actions">
-                <a class="site-header__featured-link" href="#ofertas">Ofertas</a>
+        <ul class="site-header__links site-header__links--left">
+            <li><a href="index.html" aria-current="page">Home</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+        </ul>
 
-                <button
-                    class="site-header__hamburger"
-                    type="button"
-                    aria-label="Abrir menu"
-                    aria-controls="mobile-navigation"
-                    aria-expanded="false"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
+        <a class="site-header__logo" href="index.html" aria-label="Empório GE">
+            <img src="images/Logo.png" alt="Logo do Empório GE">
+        </a>
 
-        <div
-            class="mobile-nav"
-            id="mobile-navigation"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navegação do site"
-            hidden
+        <ul class="site-header__links site-header__links--right">
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+
+        <button
+            class="site-header__hamburger"
+            type="button"
+            aria-label="Abrir menu"
+            aria-controls="mobile-navigation"
+            aria-expanded="false"
         >
-            <button class="mobile-nav__close" type="button" aria-label="Fechar menu">&times;</button>
-            <a href="index.html" aria-current="page">Home</a>
-            <a href="#ofertas">Ofertas</a>
-            <a href="#catalogo">Produtos</a>
-            <a href="#contato">Contato</a>
-        </div>
-    </header>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+    <div
+        class="mobile-nav"
+        id="mobile-navigation"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navegação do site"
+        hidden
+    >
+        <button class="mobile-nav__close" type="button" aria-label="Fechar menu">&times;</button>
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="#ofertas">Ofertas</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#contato">Contato</a>
+    </div>
+</header>
 
 <main>
 
@@ -68,7 +74,6 @@
 
         <!-- Conteúdo fixo por cima do slider -->
         <div class="hero-content">
-            <div class="logo-central"><img src="images/Logo.png" alt="Logo do Empório GE"></div>
             <h1>Bem-vindo ao Empório GE</h1>
             <p>O melhor pescado da região</p>
             <div class="hero-buttons">
@@ -76,6 +81,70 @@
                 <a href="#contato" class="hero-button">Contato</a>
             </div>
         </div>
+
+        <!-- BARRA DE HORÁRIOS (estilo Rumorosa) -->
+<div class="hero-bar">
+    <button
+        type="button"
+        class="hero-bar__item hero-bar__item--left"
+        id="abrirHorarios"
+        aria-label="Ver horários de funcionamento"
+    >
+        <span>Horário de funcionamento · Todos os dias · 06:30 — 19:00</span>
+        <span class="hero-bar__arrow">›</span>
+    </button>
+
+    <a
+        class="hero-bar__item hero-bar__item--right"
+        href="https://wa.me/55SEUNUMERO"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        <span>Encomendas · (81) 99999-9999</span>
+    </a>
+</div>
+
+<!-- MODAL DE HORÁRIOS -->
+<div
+    class="hours-modal"
+    id="hoursModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="hoursTitle"
+    hidden
+>
+    <div class="hours-modal__backdrop" data-close></div>
+
+    <div class="hours-modal__panel">
+        <button
+            class="hours-modal__close"
+            type="button"
+            aria-label="Fechar"
+            data-close
+        >&times;</button>
+
+        <div class="hours-modal__grid">
+            <div class="hours-modal__content">
+                <h2 id="hoursTitle" class="hours-modal__title">Horário de Funcionamento</h2>
+
+                <ul class="hours-modal__list">
+                    <li><span>Segunda a Sexta</span><span>06:30 — 19:00</span></li>
+                    <li><span>Sábado</span><span>06:30 — 14:00</span></li>
+                    <li><span>Domingo</span><span>Fechado</span></li>
+                </ul>
+
+                <p class="hours-modal__note">
+                    Encomendas podem ser feitas pelo WhatsApp a qualquer momento.
+                </p>
+            </div>
+
+            <div class="hours-modal__image">
+                <img src="images/peixaria.jpg" alt="Empório GE">
+            </div>
+        </div>
+    </div>
+</div>
+
     </section> <!-- Fechamento correto da section do slider -->
 
 

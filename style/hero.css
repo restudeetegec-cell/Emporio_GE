@@ -4,6 +4,7 @@
     height: 100vh; /* Ocupa a tela inteira */
     overflow: hidden;
     background-color: #f4f4f4; /* Cor de fundo para o slider */
+    padding-top: 0;
 }
 
 .hero-slide {
@@ -46,6 +47,7 @@
     z-index: 10;
     width: 90%;
     max-width: 900px;
+    padding-bottom: 90px;
 }
 
 /* Ajuste finíssimo para a imagem da logo no centro */

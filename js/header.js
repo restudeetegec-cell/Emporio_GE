@@ -38,3 +38,28 @@ desktopBreakpoint.addEventListener("change", (event) => {
         closeMobileNavigation({ restoreFocus: false });
     }
 });
+
+(function () {
+    const abrirBtn = document.getElementById('abrirHorarios');
+    const modal = document.getElementById('hoursmoda');
+    if (!abrirBtn || !modal) return;
+
+    const fechrEls = modal.querySelectorAll('[data-close]');
+
+    function abrir() {
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    function fechar() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    abrirBtn.addEventListener('click', abrir);
+    fecharEls.forEach(el => el.addEventListener('click', fechar));
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) fechar();
+    });
+})();
