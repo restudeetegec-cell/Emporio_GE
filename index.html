@@ -143,58 +143,87 @@
     </section> <!-- Fechamento correto da section do slider -->
 
 
-    <section id="ofertas">
-        
-        <h1>OFERTAS</h1>
-        <p>Ofertas especiais semanais. <strong>Não perca!</strong></p>
-
+    <section id="ofertas" class="offers">
+        <header class="offers__header">
+            <h2 class="offers__title">Ofertas da Semana</h2>
+            <p class="offers__subtitle">Preços especiais por tempo limitado</p>
+        </header>
+    
         <div class="carrossel">
-
-            <div class="oferta">
-                <img src="images/tilapia.jpg" alt="Tilápia">
-                <h3>Tilápia</h3>
-                <p>R$ 22,00</p>
-                <a href="/page products/product1.html">
-                    <button type="button" class="btt">Ver oferta</button>
-                </a>
-            </div>
-
-            <div class="oferta">
-                <img src="images/Sardinha.jpg" alt="Sardinha">
-                <h3>Sardinha</h3>
-                <p>R$ 12,00</p>
-                <a href="/page products/product2.html">
-                    <button type="button" class="btt">Ver oferta</button>
-                </a>
-            </div>
-
-            <div class="oferta">
-                <img src="images/fileti.webp" alt="Filé Tilápia">
-                <h3>Filé Tilápia</h3>
-                <p>R$ 24,00</p>
-                <a href="/page products/product3.html">
-                    <button type="button" class="btt">Ver oferta</button>
-                </a>
-            </div>
-
-            <div class="oferta">
-                <img src="images/atum.jpg" alt="Atum">
-                <h3>Atum</h3>
-                <p>R$ 32,00</p>
-                <a href="/page products/product4.html">
-                    <button type="button" class="btt">Ver oferta</button>
-                </a>
-            </div>
-
-            <div class="oferta">
-                <img src="images/Corvina.webp" alt="Corvina">
-                <h3>Corvina</h3>
-                <p>R$ 23,00</p>
-                <a href="/page products/product5.html">
-                    <button type="button" class="btt">Ver oferta</button>
-                </a>
-            </div>
-
+            <article class="oferta">
+                <div class="oferta__imagem">
+                    <img src="images/tilapia.jpg" alt="Tilápia">
+                    <span class="oferta__badge">-15%</span>
+                </div>
+                <div class="oferta__info">
+                    <h3 class="oferta__nome">Tilápia</h3>
+                    <p class="oferta__preco">R$ 22,00 <span>/ kg</span></p>
+                    <a href="page products/product1.html" class="oferta__botao">
+                        Ver oferta
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+    
+            <article class="oferta">
+                <div class="oferta__imagem">
+                    <img src="images/Sardinha.jpg" alt="Sardinha">
+                    <span class="oferta__badge">-20%</span>
+                </div>
+                <div class="oferta__info">
+                    <h3 class="oferta__nome">Sardinha</h3>
+                    <p class="oferta__preco">R$ 12,00 <span>/ kg</span></p>
+                    <a href="page-products/product2.html" class="oferta__botao">
+                        Ver oferta
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+    
+            <article class="oferta">
+                <div class="oferta__imagem">
+                    <img src="images/fileti.webp" alt="Filé Tilápia">
+                    <span class="oferta__badge">-10%</span>
+                </div>
+                <div class="oferta__info">
+                    <h3 class="oferta__nome">Filé Tilápia</h3>
+                    <p class="oferta__preco">R$ 24,00 <span>/ kg</span></p>
+                    <a href="page products/product3.html" class="oferta__botao">
+                        Ver oferta
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+    
+            <article class="oferta">
+                <div class="oferta__imagem">
+                    <img src="images/atum.jpg" alt="Atum">
+                    <span class="oferta__badge">-12%</span>
+                </div>
+                <div class="oferta__info">
+                    <h3 class="oferta__nome">Atum</h3>
+                    <p class="oferta__preco">R$ 32,00 <span>/ kg</span></p>
+                    <a href="page-products/product4.html" class="oferta__botao">
+                        Ver oferta
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
+    
+            <article class="oferta">
+                <div class="oferta__imagem">
+                    <img src="images/Corvina.webp" alt="Corvina">
+                    <span class="oferta__badge">-8%</span>
+                </div>
+                <div class="oferta__info">
+                    <h3 class="oferta__nome">Corvina</h3>
+                    <p class="oferta__preco">R$ 23,00 <span>/ kg</span></p>
+                    <a href="page-products/product5.html" class="oferta__botao">
+                        Ver oferta
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </article>
         </div>
     </section>
 
