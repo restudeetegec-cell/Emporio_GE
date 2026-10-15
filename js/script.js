@@ -93,9 +93,7 @@ const searchOverlay = document.getElementById("searchOverlay");
 const campoPesquisa = document.getElementById("campoPesquisa");
 
 abrirPesquisa.addEventListener("click", () => {
-
     searchOverlay.classList.add("ativo");
-
     campoPesquisa.focus();
 
 });
@@ -104,28 +102,19 @@ fecharPesquisa.addEventListener("click", () => {
 
     searchOverlay.classList.remove("ativo");
 
-    campoPesquisa.value = "";
-
-    mostrarProdutos(produtos);
-
 });
 
 campoPesquisa.addEventListener("input", () => {
-
-    const texto = campoPesquisa.value
-        .toLowerCase()
-        .trim();
-
-
+    const texto = campoPesquisa.value.toLowerCase().trim();
     const resultados = produtos.filter(produto =>
-
-        produto.nome
-            .toLowerCase()
-            .includes(texto)
-
+    produto.nome.toLowerCase().includes(texto)
     );
-
-
     mostrarProdutos(resultados);
 
+});
+
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape" && searchOverlay.classList.contains("ativo")) {
+        searchOverlay.classList.remove("ativo");
+    }
 });

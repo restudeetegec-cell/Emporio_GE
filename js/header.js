@@ -1,10 +1,12 @@
 const menuButton = document.querySelector(".site-header__hamburger");
 const mobileNavigation = document.querySelector("#mobile-navigation");
+const mobileBackdrop   = document.querySelector(".mobile-nav__backdrop");
 const closeMenuButton = document.querySelector(".mobile-nav__close");
 const desktopBreakpoint = window.matchMedia("(min-width: 48.0625rem)");
 
 function openMobileNavigation() {
     mobileNavigation.hidden = false;
+    mobileBackdrop.hidden = false;
     menuButton.setAttribute("aria-expanded", "true");
     document.body.classList.add("mobile-nav-open");
     closeMenuButton.focus();
@@ -12,6 +14,7 @@ function openMobileNavigation() {
 
 function closeMobileNavigation({ restoreFocus = true } = {}) {
     mobileNavigation.hidden = true;
+    mobileBackdrop.hidden = true;
     menuButton.setAttribute("aria-expanded", "false");
     document.body.classList.remove("mobile-nav-open");
 
@@ -19,6 +22,7 @@ function closeMobileNavigation({ restoreFocus = true } = {}) {
         menuButton.focus();
     }
 }
+mobileBackdrop.addEventListener("click", () => closeMobileNavigation());
 
 menuButton.addEventListener("click", openMobileNavigation);
 closeMenuButton.addEventListener("click", () => closeMobileNavigation());
@@ -41,10 +45,9 @@ desktopBreakpoint.addEventListener("change", (event) => {
 
 (function () {
     const abrirBtn = document.getElementById('abrirHorarios');
-    const modal = document.getElementById('hoursmoda');
-    if (!abrirBtn || !modal) return;
-
+    const modal = document.getElementById('hoursmodal');
     const fechrEls = modal.querySelectorAll('[data-close]');
+    if (!abrirBtn || !modal) return;
 
     function abrir() {
         modal.hidden = false;
