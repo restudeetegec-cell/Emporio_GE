@@ -37,8 +37,7 @@ p {
 ======================================== */
 
 .offers {
-    width: 90%;
-    max-width: 75rem;
+    width: 100%;
     margin: 90px auto 40px;
 }
 
@@ -69,8 +68,11 @@ p {
     flex-direction: row;
     gap: 24px;
     overflow-x: auto;
-    padding: 10px 5px 30px;
+    padding: 10px clamp(24px, 5vw, 80px) 30px;
     scrollbar-width: none;
+
+    /* Garante que o conteúdo interno não seja cortado visualmente */
+    scroll-padding-left: clamp(24px, 5vw, 80px);
 }
 
 .carrossel::-webkit-scrollbar { display: none; }
@@ -144,6 +146,7 @@ p {
 }
 
 .oferta__nome {
+    text-align: center;
     margin: 0;
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
@@ -215,14 +218,14 @@ p {
 #catalogo {
     width: 90%;
     max-width: 1200px;
-    margin: 70px auto;
+    margin: 90px auto 80px;
 }
 
 .catalogo-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .catalogo-header h2 {
@@ -230,6 +233,7 @@ p {
     margin: 0;
     font-weight: 700;
     color: goldenrod;
+    letter-spacing: 1px;
 }
 
 /* ========================================
@@ -239,7 +243,7 @@ p {
 .produtos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 24px;
 }
 
 /* ========================================
@@ -247,25 +251,33 @@ p {
 ======================================== */
 
 .produto {
-    position: relative;
-
-    text-align: center;
-
-    font-family: "Courier New", sans-serif;
-
-    border: 1px solid #dca900;
+    display: flex;
+    flex-direction: column;
+    background: #131212;
+    border: 1px solid rgba(218, 165, 32, 0.25);
     border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    font-family: "Montserrat", sans-serif;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    animation: produtoFadeIn 0.5s ease both;
+}
 
-    padding: 12px;
-
-    box-sizing: border-box;
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+@keyframes produtoFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .produto:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px rgba(218, 165, 32, 0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 15px rgba(218, 165, 32, 0.7);
+    box-shadow: 0 16px 32px rgba(218, 165, 32, 0.15);
 }
 
 /* IMAGEM */
@@ -275,7 +287,6 @@ p {
     aspect-ratio: 1 / 1;
     overflow: hidden;
     background-color: #f2f2f2;
-    border-radius: 10px;
 }
 
 .produto-imagem img {
@@ -283,29 +294,50 @@ p {
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
 }
 
 /* Efeito ao passar o mouse */
 
 .produto:hover .produto-imagem img {
-    transform: scale(1.04);
+    transform: scale(1.06);
+}
+
+/* INFO */
+.produto-info {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
 }
 
 /* NOME */
 
-.produto h3 {
-    margin: 15px 0 8px;
-    font-size: 17px;
-    font-weight: 500;
+.produto-nome {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff;
 }
 
 /* PREÇO */
 
 .produto-preco {
     margin: 0;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
+    font-family: "Courier New", monospace;
+    color: goldenrod;
+    letter-spacing: 0.5px;
+}
+
+.produto-preco span {
+    font-size: 12px;
+    font-weight: 400;
+    color: #888;
+    letter-spacing: 0;
 }
 
 /* ========================================
@@ -437,8 +469,11 @@ p {
 
     .produtos {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 
-        gap: 25px;
+    .produto-header h2 {
+        font-size: 34px;
     }
 
 }
@@ -448,22 +483,26 @@ p {
 
     #catalogo {
         width: 92%;
-
         margin: 60px auto;
     }
 
 
     .catalogo-header h2 {
-        font-size: 32px;
+        font-size: 30px;
     }
 
 
     .produtos {
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 15px;
+        gap: 14px;
     }
 
+    .produto-info {
+        padding: 12px 14px 16px;
+    }
+    
+    .produto-nome {
+        font-size: 14px;
+    }
 
     .produto h3 {
         font-size: 14px;
@@ -471,7 +510,7 @@ p {
 
 
     .produto-preco {
-        font-size: 14px;
+        font-size: 15px;
     }
 
 }
@@ -560,4 +599,14 @@ p {
 @keyframes moverMarInverso {
   0% { background-position-x: 0; }
   100% { background-position-x: 1200px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .produto,
+    .oferta,
+    .produto-imagem img,
+    .oferta__imagem img {
+        animation: none;
+        transition: none;
+    }
 }

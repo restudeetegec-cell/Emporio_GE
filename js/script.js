@@ -36,32 +36,80 @@
       ========================================================= */
    
    const produtos = [
-       {
-           nome: "Atum",
-           preco: "R$ 10,00",
-           imagem: "images/atum.jpg"
-       },
-       {
-           nome: "Corvina",
-           preco: "R$ 35,00",
-           imagem: "images/Corvina.webp"
-       },
-       {
-           nome: "Filé Tilápia",
-           preco: "R$ 24,00",
-           imagem: "images/fileti.webp"
-       },
-       {
-           nome: "Tilápia",
-           preco: "R$ 25,00",
-           imagem: "images/tilapia.jpg"
-       },
-       {
-           nome: "Sardinha",
-           preco: "R$ 25,00",
-           imagem: "images/Sardinha.jpg"
-       }
-   ];
+        {
+            nome: "Atum",
+            preco: "R$ 10,00",
+            imagem: "images/atum.jpg"
+        },
+        {
+            nome: "Corvina",
+            preco: "R$ 35,00",
+            imagem: "images/Corvina.webp"
+        },
+        {
+            nome: "Filé Tilápia",
+            preco: "R$ 24,00",
+            imagem: "images/fileti.webp"
+        },
+        {
+            nome: "Tilápia",
+            preco: "R$ 25,00",
+            imagem: "images/tilapia.jpg"
+        },
+        {
+            nome: "Sardinha",
+            preco: "R$ 25,00",
+            imagem: "images/Sardinha.jpg"
+        },
+        {
+            nome: "Camarão",
+            preco: "R$ 45,00",
+            imagem: null,
+            icone: "fa-shrimp"
+        },
+        {
+            nome: "Ovos",
+            preco: "R$ 18,00",
+            unidade: "dúzia",
+            imagem: null,
+            icone: "fa-egg"
+        },
+        {
+            nome: "Chimichurri",
+            preco: "R$ 12,00",
+            unidade: "pote",
+            imagem: null,
+            icone: "fa-mortar-pestle"
+        },
+        {
+            nome: "Páprica",
+            preco: "R$ 10,00",
+            unidade: "pote",
+            imagem: null,
+            icone: "fa-pepper-hot"
+        },
+        {
+            nome: "Colorau",
+            preco: "R$ 8,00",
+            unidade: "pote",
+            imagem: null,
+            icone: "fa-pepper-hot"
+        },
+        {
+            nome: "Lemon Pepper",
+            preco: "R$ 14,00",
+            unidade: "pote",
+            imagem: null,
+            icone: "fa-lemon"
+        },
+        {
+            nome: "Açafrão",
+            preco: "R$ 22,00",
+            unidade: "pote",
+            imagem: null,
+            icone: "fa-mortar-pestle"
+        }
+    ];
    
    const listaProdutos = document.getElementById("listaProdutos");
    

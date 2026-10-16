@@ -42,27 +42,3 @@ desktopBreakpoint.addEventListener("change", (event) => {
         closeMobileNavigation({ restoreFocus: false });
     }
 });
-
-(function () {
-    const abrirBtn = document.getElementById('abrirHorarios');
-    const modal = document.getElementById('hoursmodal');
-    const fechrEls = modal.querySelectorAll('[data-close]');
-    if (!abrirBtn || !modal) return;
-
-    function abrir() {
-        modal.hidden = false;
-        document.body.style.overflow = 'hidden';
-    }
-
-    function fechar() {
-        modal.hidden = true;
-        document.body.style.overflow = '';
-    }
-
-    abrirBtn.addEventListener('click', abrir);
-    fecharEls.forEach(el => el.addEventListener('click', fechar));
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !modal.hidden) fechar();
-    });
-})();
