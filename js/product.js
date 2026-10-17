@@ -1,5 +1,5 @@
 (function () {
-    // Troca de Imagem na Galeria
+    /* ---------- TROCA DE IMAGEM NA GALERIA ---------- */
     const mainImage = document.getElementById("mainImage");
     const thumbs = document.querySelectorAll(".product-gallery__thumb");
 
@@ -19,42 +19,59 @@
         });
     });
 
-    // Botões de + e - da Quantidade
+    /* ---------- BOTÕES DE + E - DA QUANTIDADE ---------- */
     const qtyInput = document.getElementById("quantity");
     const qtyButtons = document.querySelectorAll(".product-form__qty-btn");
 
-    qtyButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const action = btn.dataset.action;
-            const current = parseInt(qtyInput.value, 10) || 1;
-            const min = parseInt(qtyInput.min, 10) || 1;
-            const max = parseInt(qtyInput.max, 10) || 99;
+    if (qtyInput) {
+        qtyButtons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const action = btn.dataset.action;
+                const current = parseInt(qtyInput.value, 10) || 1;
+                const min = parseInt(qtyInput.min, 10) || 1;
+                const max = parseInt(qtyInput.max, 10) || 99;
 
-            if (action === "minus" && current > min) qtyInput.value = current - 1;
-            if (action === "plus"  && current < max) qtyInput.value = current + 1;
+                if (action === "minus" && current > min) qtyInput.value = current - 1;
+                if (action === "plus"  && current < max) qtyInput.value = current + 1;
+            });
         });
-    });
+    }
 
-    // Envio pro WhatsApp
+    /* ---------- ADICIONAR AO CARRINHO ---------- */
     const form = document.getElementById("productForm");
     
     if (form) {
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Impede a página de recarregar
 
-            const produto = document.getElementById("productName").textContent.trim();
-            const preco = document.getElementById("productPrice").textContent.trim();
+            // 1. Pega o nome do produto
+            const nome = document.getElementById("productName").textContent.trim();
+            
+            // 2. Pega o preço usando o atributo data-price que é mais seguro
+            const precoFloat = parseFloat(document.getElementById("productPrice").getAttribute("data-price"));
+            
+            // 3. Pega o corte e a quantidade
             const corte = document.getElementById("cutType").value;
-            const quantidade = qtyInput.value;
+            const quantidade = parseInt(qtyInput.value, 10);
+            
+            // 4. Pega a imagem principal
+            const imagemSrc = document.getElementById("mainImage") ? document.getElementById("mainImage").src : "";
 
-            const mensagem =
-                `Olá! Gostaria de encomendar:%0A%0A` +
-                `*${produto}*%0A` +
-                `Corte: ${corte}%0A` +
-                `Quantidade: ${quantidade} un%0A` +
-                `Preço: ${preco}`;
+            // 5. Monta o objeto do produto
+            const produto = {
+                nome: nome,
+                preco: precoFloat,
+                corte: corte,
+                quantidade: quantidade,
+                imagem: imagemSrc
+            };
 
-            window.open(`https://wa.me/55SEUNUMERO?text=${mensagem}`, "_blank");
+            // 6. Envia para o carrinho
+            if (typeof window.addToCart === 'function') {
+                window.addToCart(produto);
+            } else {
+                alert("Erro: O carrinho não foi carregado. Verifique se o cart.js está no HTML.");
+            }
         });
     }
 })();

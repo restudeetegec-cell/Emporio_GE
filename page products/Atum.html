@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/productStyle.css">
+    <link rel="stylesheet" href="../style/cart.css"> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +60,8 @@
             <!-- LADO ESQUERDO: IMAGENS -->
             <div class="product-gallery">
                 <div class="product-gallery__main">
-                    <img id="mainImage" src="../images/atum.jpg" alt="Corvina">
+                    <!-- Corrigido o alt de "Corvina" para "Atum" -->
+                    <img id="mainImage" src="../images/atum.jpg" alt="Atum">
                 </div>
                 <div class="product-gallery__thumbs">
                     <button class="product-gallery__thumb is-active" type="button" data-image="../images/atum.jpg">
@@ -79,7 +81,8 @@
                 <p class="product-info__category">Pescado Fresco</p>
                 
                 <h1 class="product-info__title" id="productName">Atum</h1>
-                <p class="product-info__price" id="productPrice">R$ 10,00 <span>/ 500g</span></p>
+                <!-- Usando data-price para o JS pegar o valor exato sem erro de vírgula -->
+                <p class="product-info__price" id="productPrice" data-price="10.00">R$ 10,00 <span>/ 500g</span></p>
 
                 <form class="product-form" id="productForm">
                     <div class="product-form__row">
@@ -100,9 +103,16 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="product-form__submit">
-                        <i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp
+                    
+                    <!-- BOTÃO 1: Adicionar ao Carrinho (Fica dentro do form, envia para o JS) -->
+                    <button type="submit" class="product-form__submit" style="background: goldenrod; color: #0b0b0b; border: 0;">
+                        <i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho
                     </button>
+
+                    <!-- BOTÃO 2: WhatsApp (Link externo que puxa os valores do form) -->
+                    <a href="https://wa.me/5581986836253" id="btnWhatsapp" target="_blank" class="product-form__submit" style="background: transparent; border: 1px solid goldenrod; color: goldenrod; text-decoration: none; margin-top: 10px;">
+                        <i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp
+                    </a>
                 </form>
 
                 <div class="product-info__description">
@@ -128,7 +138,8 @@
     </footer>
 
     <!-- JS -->
-    <script src="../js/header.js"></script>
-    <script src="../js/product.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/product.js"></script>
+    <script src="/js/carrinho.js"></script> 
 </body>
 </html>

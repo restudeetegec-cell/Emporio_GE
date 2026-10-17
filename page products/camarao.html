@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/productStyle.css">
+    <link rel="stylesheet" href="../style/cart.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,8 +54,6 @@
         </nav>
 
         <div class="product-page__grid">
-            
-            <!-- LADO ESQUERDO: IMAGENS -->
             <div class="product-gallery">
                 <div class="product-gallery__main">
                     <img id="mainImage" src="../images/Camarao.jpg" alt="Camarão">
@@ -72,12 +71,11 @@
                 </div>
             </div>
 
-            <!-- LADO DIREITO: INFORMAÇÕES E COMPRA -->
             <div class="product-info">
                 <p class="product-info__category">Frutos do Mar</p>
                 
                 <h1 class="product-info__title" id="productName">Camarão</h1>
-                <p class="product-info__price" id="productPrice">R$ 45,00 <span>/ kg</span></p>
+                <p class="product-info__price" id="productPrice" data-price="45.00">R$ 45,00 <span>/ kg</span></p>
 
                 <form class="product-form" id="productForm">
                     <div class="product-form__row">
@@ -97,21 +95,21 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="product-form__submit">
                         <i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp
+                    </button>
+
+                    <button type="submit" class="product-form__submit">
+                        <i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho
                     </button>
                 </form>
 
                 <div class="product-info__description">
                     <h2>Sobre o produto</h2>
-                    <p>
-                        Camarão fresco, selecionado e de excelente qualidade. 
-                        Perfeito para receitas grelhadas, refogados, risotos ou para a famosa sequência de camarão. 
-                        Vendido por quilo, pode ser encomendado com ou sem casca.
-                    </p>
+                    <p>Camarão fresco, selecionado e de excelente qualidade. Perfeito para receitas grelhadas, refogados, risotos ou para a famosa sequência de camarão. Vendido por quilo, pode ser encomendado com ou sem casca.</p>
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -126,7 +124,8 @@
         </div>
     </footer>
 
-    <script src="../js/header.js"></script>
-    <script src="../js/product.js"></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/product.js"></script>
+    <script src="/js/carrinho.js"></script> 
 </body>
 </html>
