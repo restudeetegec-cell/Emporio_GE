@@ -51,7 +51,7 @@
                 `Olá! Gostaria de encomendar:%0A%0A` +
                 `*${produto}*%0A` +
                 `Corte: ${corte}%0A` +
-                `Quantidade: ${quantidade} kg%0A` +
+                `Quantidade: ${quantidade} un%0A` +
                 `Preço: ${preco}`;
 
             window.open(`https://wa.me/55SEUNUMERO?text=${mensagem}`, "_blank");

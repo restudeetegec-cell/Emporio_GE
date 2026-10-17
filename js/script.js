@@ -9,18 +9,18 @@
        let pausado = false;
    
        function moverCarrossel() {
-        if (pausado) return;
-    
-        carrossel.scrollBy({ left: velocidade, behavior: 'instant' });
-    
-        if (carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 1) {
-            velocidade = -1;
-        }
-    
-        if (carrossel.scrollLeft <= 0) {
-            velocidade = 1;
-        }
-    }
+           if (pausado) return;
+   
+           carrossel.scrollBy({ left: velocidade, behavior: 'instant' });
+   
+           if (carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 1) {
+               velocidade = -1;
+           }
+   
+           if (carrossel.scrollLeft <= 0) {
+               velocidade = 1;
+           }
+       }
    
        setInterval(moverCarrossel, 30);
    
@@ -36,80 +36,107 @@
       ========================================================= */
    
    const produtos = [
-        {
-            nome: "Atum",
-            preco: "R$ 10,00",
-            imagem: "images/atum.jpg"
-        },
-        {
-            nome: "Corvina",
-            preco: "R$ 35,00",
-            imagem: "images/Corvina.webp"
-        },
-        {
-            nome: "Filé Tilápia",
-            preco: "R$ 24,00",
-            imagem: "images/fileti.webp"
-        },
-        {
-            nome: "Tilápia",
-            preco: "R$ 25,00",
-            imagem: "images/tilapia.jpg"
-        },
-        {
-            nome: "Sardinha",
-            preco: "R$ 25,00",
-            imagem: "images/Sardinha.jpg"
-        },
-        {
-            nome: "Camarão",
-            preco: "R$ 45,00",
-            imagem: null,
-            icone: "fa-shrimp"
-        },
-        {
-            nome: "Ovos",
-            preco: "R$ 18,00",
-            unidade: "dúzia",
-            imagem: null,
-            icone: "fa-egg"
-        },
-        {
-            nome: "Chimichurri",
-            preco: "R$ 12,00",
-            unidade: "pote",
-            imagem: null,
-            icone: "fa-mortar-pestle"
-        },
-        {
-            nome: "Páprica",
-            preco: "R$ 10,00",
-            unidade: "pote",
-            imagem: null,
-            icone: "fa-pepper-hot"
-        },
-        {
-            nome: "Colorau",
-            preco: "R$ 8,00",
-            unidade: "pote",
-            imagem: null,
-            icone: "fa-pepper-hot"
-        },
-        {
-            nome: "Lemon Pepper",
-            preco: "R$ 14,00",
-            unidade: "pote",
-            imagem: null,
-            icone: "fa-lemon"
-        },
-        {
-            nome: "Açafrão",
-            preco: "R$ 22,00",
-            unidade: "pote",
-            imagem: null,
-            icone: "fa-mortar-pestle"
-        }
-    ];
+       { 
+           nome: "Atum", 
+           preco: "R$ 22,00", 
+           unidade: "500g", 
+           imagem: "images/atum.jpg", 
+           link: "page products/Atum.html" 
+       },
+       { 
+           nome: "Corvina", 
+           preco: "R$ 19,00", 
+           unidade: "kg", 
+           imagem: "images/Corvina.webp", 
+           link: "page products/Corvina.html" 
+       },
+       { 
+           nome: "Filé Tilápia", 
+           preco: "R$ 20,00", 
+           unidade: "kg", 
+           imagem: "images/fileti.webp", 
+           link: "page products/fileti.html" 
+       },
+       { 
+           nome: "Tilápia", 
+           preco: "R$ 15,00", 
+           unidade: "kg", 
+           imagem: "images/tilapia.jpg", 
+           link: "page products/tilapia.html" 
+       },
+       { 
+           nome: "Sardinha", 
+           preco: "R$ 10,00", 
+           unidade: "800g", 
+           imagem: "images/Sardinha.jpg", 
+           link: "page products/Sardinha.html" 
+       },
+       { 
+           nome: "Camarão", 
+           preco: "R$ 45,00", 
+           unidade: "kg", 
+           imagem: "images/Camarao.jpg", 
+           icone: "fa-shrimp", 
+           link: "page products/camarao.html" 
+       },
+       { 
+           nome: "Ovos", 
+           preco: "R$ 20,00", 
+           unidade: "dúzia", 
+           imagem: "images/Eggs.jpg", 
+           icone: "fa-egg", 
+           link: "page products/ovos.html" 
+       },
+       { 
+           nome: "Chimichurri", 
+           preco: "R$ 3,00", 
+           unidade: "Pacote", 
+           imagem: "images/Chimichurri.jpg", 
+           icone: "fa-mortar-pestle", 
+           link: "page products/chimichurri.html" 
+       },
+       { 
+           nome: "Páprica", 
+           preco: "R$ 3,00", 
+           unidade: "Pacote", 
+           imagem: "images/Páprica.jpg", 
+           icone: "fa-pepper-hot", 
+           link: "page products/paprica.html" 
+       },
+       { 
+           nome: "Colorau", 
+           preco: "R$ 2,00", 
+           unidade: "Pacote", 
+           imagem: "images/Colorau.jpg", 
+           icone: "fa-pepper-hot", 
+           link: "page products/colorau.html" 
+       },
+       { 
+           nome: "Lemon Pepper", 
+           preco: "R$ 14,00", 
+           unidade: "pote", 
+           imagem: "images/Lemon-Peper.avif", 
+           icone: "fa-lemon", 
+           link: "page products/lemon-pepper.html" 
+       },
+       { 
+           nome: "Açafrão", 
+           preco: "R$ 3,00", 
+           unidade: "Pacote", 
+           imagem: "images/acafrao.avif", 
+           icone: "fa-mortar-pestle", 
+           link: "page products/acafrao.html" 
+       },
+       { 
+           nome: "Pasta de Brilho", 
+           preco: "R$ 3,00", 
+           unidade: "Pote", 
+           imagem: "images/pasta-brilho.jpeg", 
+           icone: "fa-pasta-brilho", 
+           link: "page products/pasta-brilho.html"
+       }   
+
+   ];
    
    const listaProdutos = document.getElementById("listaProdutos");
    
@@ -121,13 +148,27 @@
            card.classList.add("produto");
            card.style.animationDelay = `${index * 0.06}s`;
    
+           // Define a unidade padrão como "kg" caso não esteja especificada
+           const unidade = produto.unidade || "kg";
+   
+           // Se tiver imagem, usa a imagem. Se não, usa o ícone.
+           const conteudoImagem = produto.imagem
+               ? `<img src="${produto.imagem}" alt="${produto.nome}">`
+               : `<div class="produto-sem-imagem">
+                      <i class="fa-solid ${produto.icone || 'fa-fish'}"></i>
+                  </div>`;
+   
            card.innerHTML = `
                <div class="produto-imagem">
-                   <img src="${produto.imagem}" alt="${produto.nome}">
+                   ${conteudoImagem}
                </div>
                <div class="produto-info">
                    <h3 class="produto-nome">${produto.nome}</h3>
-                   <p class="produto-preco">${produto.preco} <span>/ kg</span></p>
+                   <p class="produto-preco">${produto.preco} <span>/ ${unidade}</span></p>
+                   <a href="${produto.link}" class="produto-botao">
+                       Comprar
+                       <i class="fa-solid fa-arrow-right"></i>
+                   </a>
                </div>
            `;
    

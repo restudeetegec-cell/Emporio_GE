@@ -292,8 +292,8 @@ height: 40%;
     gap: 12px;
     height: 52px;
     padding: 0 24px;
-    background: #25d366;
-    color: #0b0b0b;
+    background: #312e2e;
+    color: goldenrod;
     border: 0;
     border-radius: 50px;
     font-family: "Montserrat", sans-serif;
@@ -310,9 +310,10 @@ height: 40%;
 }
 
 .product-form__submit:hover {
-    background: #2ee676;
+    background: goldenrod;
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.3);
+    box-shadow: 0 10px 24px rgba(218, 165, 32, 0.3);
+    color: #131212;
 }
 
 /* ==========================================================================
