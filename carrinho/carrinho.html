@@ -6,15 +6,15 @@
     <title>Meu Carrinho — Empório GE</title>
 
     <!-- CSS Global -->
-    <link rel="stylesheet" href="/style/main.css">
-    <link rel="stylesheet" href="/style/header.css">
-    <link rel="stylesheet" href="/style/cart.css">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/header.css">
+    <link rel="stylesheet" href="style/cart.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="shortcut icon" href="images/Logo.png" type="image/png">
+    <link rel="shortcut icon" href="images/logo.png" type="image/png">
 </head>
 
 <body>
@@ -22,15 +22,15 @@
     <header class="site-header">
         <nav class="site-header__nav" aria-label="Navegação principal">
             <ul class="site-header__links site-header__links--left">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../../index.html#ofertas">Ofertas</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#ofertas">Ofertas</a></li>
             </ul>
-            <a class="site-header__logo" href="../index.html" aria-label="Empório GE">
-                <img src="../images/logo.png" alt="Logo do Empório GE">
+            <a class="site-header__logo" href="index.html" aria-label="Empório GE">
+                <img src="images/logo.png" alt="Logo do Empório GE">
             </a>
             <ul class="site-header__links site-header__links--right">
-                <li><a href="../index.html#catalogo">Catálogo</a></li>
-                <li><a href="../index.html#contato">Contato</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
             </ul>
             <button class="site-header__hamburger" type="button" aria-label="Abrir menu" aria-controls="mobile-navigation" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -41,17 +41,17 @@
     <div class="mobile-nav__backdrop" data-close-menu hidden></div>
     <div class="mobile-nav" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Navegação" hidden>
         <button class="mobile-nav__close" type="button" aria-label="Fechar menu">&times;</button>
-        <a href="../index.html">Home</a>
-        <a href="../index.html#ofertas">Ofertas</a>
-        <a href="../index.html#catalogo">Catálogo</a>
-        <a href="../index.html#contato">Contato</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#ofertas">Ofertas</a>
+        <a href="index.html#catalogo">Catálogo</a>
+        <a href="index.html#contato">Contato</a>
     </div>
 
     <!-- CONTEÚDO DO CARRINHO -->
     <main class="cart-page">
         <div class="cart-page__header">
             <h1>Seu Pedido</h1>
-            <a href="../index.html#catalogo" class="cart-page__back"><i class="fa-solid fa-arrow-left"></i> Continuar comprando</a>
+            <a href="index.html#catalogo" class="cart-page__back"><i class="fa-solid fa-arrow-left"></i> Continuar comprando</a>
         </div>
 
         <div class="cart-page__layout">
@@ -60,7 +60,7 @@
                 <!-- Os itens vão ser injetados aqui pelo JS -->
             </div>
 
-            <!-- Resumo do Pedido -->
+            <!-- Resumo do Pedido! -->
             <aside class="cart-page__summary">
                 <h2>Resumo da Compra</h2>
                 <div class="cart-page__total">
@@ -86,7 +86,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="/js/header.js"></script>
-    <script src="/js/carrinho.js"></script> <!-- Lógica do Carrinho -->
+    <script src="js/header.js"></script>
+    <script src="js/carrinho.js"></script> <!-- Lógica do Carrinho -->
 </body>
 </html>

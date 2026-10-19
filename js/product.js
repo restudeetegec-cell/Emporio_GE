@@ -1,77 +1,95 @@
 (function () {
-    /* ---------- TROCA DE IMAGEM NA GALERIA ---------- */
+    "use strict";
+
     const mainImage = document.getElementById("mainImage");
     const thumbs = document.querySelectorAll(".product-gallery__thumb");
+    const qtyInput = document.getElementById("quantity");
+    const form = document.getElementById("productForm");
 
-    thumbs.forEach(thumb => {
+    thumbs.forEach((thumb) => {
         thumb.addEventListener("click", () => {
             const newSrc = thumb.dataset.image;
             if (!newSrc || !mainImage) return;
-
             mainImage.style.opacity = "0";
-            setTimeout(() => {
+            window.setTimeout(() => {
                 mainImage.src = newSrc;
                 mainImage.style.opacity = "1";
             }, 150);
-
-            thumbs.forEach(t => t.classList.remove("is-active"));
+            thumbs.forEach((item) => item.classList.remove("is-active"));
             thumb.classList.add("is-active");
         });
     });
 
-    /* ---------- BOTÕES DE + E - DA QUANTIDADE ---------- */
-    const qtyInput = document.getElementById("quantity");
-    const qtyButtons = document.querySelectorAll(".product-form__qty-btn");
-
     if (qtyInput) {
-        qtyButtons.forEach(btn => {
-            btn.addEventListener("click", () => {
-                const action = btn.dataset.action;
-                const current = parseInt(qtyInput.value, 10) || 1;
-                const min = parseInt(qtyInput.min, 10) || 1;
-                const max = parseInt(qtyInput.max, 10) || 99;
+        document.querySelectorAll(".product-form__qty-btn").forEach((button) => {
+            button.addEventListener("click", () => {
+                const min = Number(qtyInput.min) || 1;
+                const max = Number(qtyInput.max) || 99;
+                const current = Number(qtyInput.value) || min;
 
-                if (action === "minus" && current > min) qtyInput.value = current - 1;
-                if (action === "plus"  && current < max) qtyInput.value = current + 1;
+                if (button.dataset.action === "minus") qtyInput.value = String(Math.max(min, current - 1));
+                else if (button.dataset.action === "plus") qtyInput.value = String(Math.min(max, current + 1));
             });
         });
     }
 
-    /* ---------- ADICIONAR AO CARRINHO ---------- */
-    const form = document.getElementById("productForm");
-    
-    if (form) {
-        form.addEventListener("submit", (e) => {
-            e.preventDefault(); // Impede a página de recarregar
+    if (!form) return;
 
-            // 1. Pega o nome do produto
-            const nome = document.getElementById("productName").textContent.trim();
-            
-            // 2. Pega o preço usando o atributo data-price que é mais seguro
-            const precoFloat = parseFloat(document.getElementById("productPrice").getAttribute("data-price"));
-            
-            // 3. Pega o corte e a quantidade
-            const corte = document.getElementById("cutType").value;
-            const quantidade = parseInt(qtyInput.value, 10);
-            
-            // 4. Pega a imagem principal
-            const imagemSrc = document.getElementById("mainImage") ? document.getElementById("mainImage").src : "";
+    function getOrderData() {
+        const nameElement = document.getElementById("productName");
+        const priceElement = document.getElementById("productPrice");
+        const optionElement = document.getElementById("cutType");
+        const quantityLabel = form.querySelector('label[for="quantity"]');
+        
+        const quantity = Math.max(1, Number.parseInt(qtyInput?.value, 10) || 1);
+        const unitMatch = quantityLabel?.textContent.match(/\((.*?)\)/);
+        const unit = unitMatch ? unitMatch[1].trim() : "unidade";
 
-            // 5. Monta o objeto do produto
-            const produto = {
-                nome: nome,
-                preco: precoFloat,
-                corte: corte,
-                quantidade: quantidade,
-                imagem: imagemSrc
-            };
-
-            // 6. Envia para o carrinho
-            if (typeof window.addToCart === 'function') {
-                window.addToCart(produto);
-            } else {
-                alert("Erro: O carrinho não foi carregado. Verifique se o cart.js está no HTML.");
-            }
-        });
+        return {
+            nome: nameElement?.textContent.trim() || "Produto",
+            preco: Number(priceElement?.dataset.price) || 0,
+            corte: optionElement?.value || "Padrão",
+            quantidade: quantity,
+            unidade: unit,
+            imagem: mainImage?.src || ""
+        };
     }
+
+    const formatBRL = (value) => Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const order = getOrderData();
+        const action = event.submitter?.dataset.action;
+
+        if (action === "whatsapp") {
+            const subtotal = order.preco * order.quantidade;
+            const message = [
+                "Olá, Empório GE! Gostaria de fazer uma encomenda:",
+                "",
+                `Produto: ${order.nome}`,
+                `Opção: ${order.corte}`,
+                `Quantidade: ${order.quantidade} (${order.unidade})`,
+                `Subtotal: ${formatBRL(subtotal)}`,
+                "",
+                "Poderiam confirmar a disponibilidade?"
+            ].join("\n");
+
+            window.open(`https://wa.me/5581986836253?text=${encodeURIComponent(message)}`, "_blank");
+            return;
+        }
+
+        if (action === "cart" || !action) {
+            if (typeof window.addToCart !== "function") return alert("Carrinho não carregou.");
+            
+            window.addToCart(order);
+            const btn = event.submitter;
+            if (btn) {
+                const oldText = btn.innerHTML;
+                btn.innerHTML = "Adicionado!";
+                window.setTimeout(() => btn.innerHTML = oldText, 1500);
+            }
+        }
+    });
 })();

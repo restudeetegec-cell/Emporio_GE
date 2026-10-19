@@ -1,126 +1,197 @@
-(function() {
-    // 1. INJETA O BOTÃO FLUTUANTE (Em todas as páginas)
-    // Verifica se estamos na pasta "page products" para ajustar o link
-    const cartLink = "/carrinho/carrinho.html";
+(function () {
+    "use strict";
 
-    const buttonHTML = `
-        <a href="${cartLink}" class="cart-float" aria-label="Abrir carrinho">
-            <i class="fa-solid fa-basket-shopping"></i>
+    // Verifica se estamos na pasta "page products" para voltar um nível.
+    // Se for a página do carrinho, ela também está na raiz, então não volta.
+    const isSubfolder = window.location.pathname.includes("page products");
+    const basePath = isSubfolder ? "../" : "";
+    
+    // Link direto para o arquivo na raiz
+    const cartPageUrl = basePath + "carrinho.html";
+    const catalogUrl = basePath + "index.html#catalogo";
+    const storageKey = "emporioCart";
+
+    function loadCart() {
+        try {
+            const saved = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
+            if (!Array.isArray(saved)) return [];
+            return saved.filter(item => item && typeof item.nome === "string").map(item => ({
+                nome: item.nome,
+                preco: Number(item.preco) || 0,
+                corte: String(item.corte || "Padrão"),
+                unidade: String(item.unidade || "unidade"),
+                quantidade: Math.max(1, Number.parseInt(item.quantidade, 10) || 1),
+                imagem: typeof item.imagem === "string" ? item.imagem : ""
+            }));
+        } catch (error) {
+            return [];
+        }
+    }
+
+    let cart = loadCart();
+
+    const formatBRL = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    const totalItems = () => cart.reduce((sum, item) => sum + item.quantidade, 0);
+    const totalPrice = () => cart.reduce((sum, item) => sum + item.preco * item.quantidade, 0);
+
+    // Cria o Widget (Botão + Gaveta de prévia)
+    const widget = document.createElement("div");
+    widget.className = "cart-widget";
+    widget.innerHTML = `
+        <a href="${cartPageUrl}" class="cart-float" aria-label="Abrir carrinho">
+            <i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
             <span class="cart-float__count" id="cartCount">0</span>
         </a>
+        <aside class="cart-drawer" id="cartDrawer" aria-label="Prévia do carrinho">
+            <div class="cart-drawer__header">
+                <strong>Seu carrinho</strong>
+                <span id="cartPreviewCount">0 itens</span>
+            </div>
+            <div class="cart-drawer__items" id="cartPreviewItems"></div>
+            <div class="cart-drawer__total">
+                <span>Total parcial</span>
+                <strong id="cartPreviewTotal">R$ 0,00</strong>
+            </div>
+            <a class="cart-drawer__checkout" href="${cartPageUrl}">
+                Comprar agora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+        </aside>
     `;
-    document.body.insertAdjacentHTML('beforeend', buttonHTML);
+    document.body.appendChild(widget);
 
-    // 2. LÓGICA GLOBAL
-    let cart = JSON.parse(localStorage.getItem("emporioCart")) || [];
-    
-    const cartCountEl = document.getElementById("cartCount");
-    const formatBRL = (valor) => valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const cartCountEl = widget.querySelector("#cartCount");
+    const previewCountEl = widget.querySelector("#cartPreviewCount");
+    const previewItemsEl = widget.querySelector("#cartPreviewItems");
+    const previewTotalEl = widget.querySelector("#cartPreviewTotal");
 
     function saveCart() {
-        localStorage.setItem("emporioCart", JSON.stringify(cart));
+        try {
+            window.localStorage.setItem(storageKey, JSON.stringify(cart));
+        } catch (error) { console.warn("Erro ao salvar carrinho."); }
     }
 
-    // Atualiza apenas a bolinha do botão flutuante
-    if (cartCountEl) {
-        const totalItens = cart.reduce((acc, item) => acc + item.quantidade, 0);
-        cartCountEl.textContent = totalItens;
-    }
+    function renderWidget() {
+        cartCountEl.textContent = String(totalItems());
+        previewCountEl.textContent = `${totalItems()} ${totalItems() === 1 ? "item" : "itens"}`;
+        previewTotalEl.textContent = formatBRL(totalPrice());
+        previewItemsEl.replaceChildren();
 
-    // Função que a página do produto vai chamar
-    window.addToCart = function(produto) {
-        const itemExistente = cart.find(item => item.nome === produto.nome && item.corte === produto.corte);
-        if (itemExistente) {
-            itemExistente.quantidade += produto.quantidade;
-        } else {
-            cart.push(produto);
-        }
-        saveCart();
-
-        const count = cart.reduce((acc, cur) => acc + cur.quantidade, 0)
-        document.querySelector("#cartCount").innerHTML = count
-
-        // window.location.href = cartLink; // Redireciona para a página do carrinho
-    };
-
-    // 3. LÓGICA EXCLUSIVA DA PÁGINA CARRINHO.HTML
-    const cartItemsContainer = document.getElementById("cartItemsContainer");
-
-    console.log("YAYAAAA")
-
-    if (cartItemsContainer) {
-        const cartTotalPriceEl = document.getElementById("cartTotalPrice");
-        const checkoutBtn = document.getElementById("checkoutBtn");
-
-        function renderCartPage() {
-            cartItemsContainer.innerHTML = "";
-            let total = 0;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = `
-                    <div class="cart-empty">
-                        <p>Seu carrinho está vazio.</p>
-                        <a href="index.html#catalogo" style="color:goldenrod; text-decoration:none;">Ver produtos</a>
-                    </div>`;
-                cartTotalPriceEl.textContent = "R$ 0,00";
-                return;
-            }
-
-            cart.forEach((item, index) => {
-                const subtotal = item.preco * item.quantidade;
-                total += subtotal;
-
-                const div = document.createElement("div");
-                div.classList.add("cart-item");
-                div.innerHTML = `
-                    ${item.imagem ? `<img src="${item.imagem}" class="cart-item__img" alt="${item.nome}">` : '<div class="cart-item__img"></div>'}
-                    <div class="cart-item__info">
-                        <h4>${item.nome}</h4>
-                        <span>${item.quantidade} un (${item.corte})</span>
-                    </div>
-                    <div class="cart-item__price">${formatBRL(subtotal)}</div>
-                    <button class="cart-item__remove" onclick="removeFromCart(${index})">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                `;
-                cartItemsContainer.appendChild(div);
-            });
-
-            cartTotalPriceEl.textContent = formatBRL(total);
+        if (cart.length === 0) {
+            previewItemsEl.innerHTML = '<p class="cart-drawer__empty">Seu carrinho está vazio.</p>';
+            return;
         }
 
-        // Remove item
-        window.removeFromCart = function(index) {
-            cart.splice(index, 1);
-            saveCart();
-            renderCartPage();
-            if(cartCountEl) cartCountEl.textContent = cart.reduce((acc, item) => acc + item.quantidade, 0);
-        };
-
-        // Checkout
-        checkoutBtn.addEventListener("click", () => {
-            console.log("CLICK")
-
-            if (cart.length === 0) {
-                alert("Seu carrinho está vazio!");
-                return;
-            }
-
-            let mensagem = "Olá, Empório GE! Gostaria de fazer o seguinte pedido:%0A%0A";
-            let total = 0;
-
-            cart.forEach(item => {
-                const subtotal = item.preco * item.quantidade;
-                total += subtotal;
-                mensagem += `*${item.nome}* (${item.corte})%0A`;
-                mensagem += `Qtd: ${item.quantidade} un | Subtotal: ${formatBRL(subtotal)}%0A%0A`;
-            });
-
-            mensagem += `*TOTAL DO PEDIDO:* ${formatBRL(total)}`;
-            window.open(`https://wa.me/5581986836253?text=${mensagem}`, "_blank");
+        cart.slice(0, 3).forEach((item) => {
+            const row = document.createElement("div");
+            row.className = "cart-drawer__item";
+            row.innerHTML = `
+                <span class="cart-drawer__item-name">${item.quantidade} × ${item.nome}</span>
+                <strong>${formatBRL(item.preco * item.quantidade)}</strong>
+            `;
+            previewItemsEl.appendChild(row);
         });
 
-        // Inicia a página
-        renderCartPage();
+        if (cart.length > 3) {
+            previewItemsEl.innerHTML += `<p class="cart-drawer__more">E mais ${cart.length - 3} produto(s).</p>`;
+        }
     }
+
+    function renderCartPage() {
+        const container = document.getElementById("cartItemsContainer");
+        if (!container) return;
+
+        const totalElement = document.getElementById("cartTotalPrice");
+        container.replaceChildren();
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="cart-empty">
+                    <p>Seu carrinho está vazio.</p>
+                    <a href="${catalogUrl}" style="color:goldenrod; text-decoration:none;">Ver produtos</a>
+                </div>`;
+            if (totalElement) totalElement.textContent = formatBRL(0);
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            const row = document.createElement("article");
+            row.className = "cart-item";
+
+            const imgHtml = item.imagem ? `<img src="${item.imagem}" class="cart-item__img" alt="${item.nome}" loading="lazy">` : `<div class="cart-item__img"></div>`;
+            
+            const option = item.corte && !["Padrão", "Oferta"].includes(item.corte) ? ` • ${item.corte}` : item.corte === "Oferta" ? " • Oferta" : "";
+
+            row.innerHTML = `
+                ${imgHtml}
+                <div class="cart-item__info">
+                    <h4>${item.nome}</h4>
+                    <span>${item.quantidade} × ${item.unidade}${option}</span>
+                </div>
+                <div class="cart-item__price">${formatBRL(item.preco * item.quantidade)}</div>
+                <button class="cart-item__remove" onclick="removeFromCart(${index})" aria-label="Remover">
+                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                </button>
+            `;
+            container.appendChild(row);
+        });
+
+        if (totalElement) totalElement.textContent = formatBRL(totalPrice());
+    }
+
+    function refresh() { renderWidget(); renderCartPage(); }
+
+    window.addToCart = function (product) {
+        if (!product || !product.nome) return false;
+
+        const item = {
+            nome: product.nome.trim(),
+            preco: Number(product.preco),
+            corte: String(product.corte || "Padrão"),
+            unidade: String(product.unidade || "unidade"),
+            quantidade: Math.max(1, Number.parseInt(product.quantidade, 10) || 1),
+            imagem: typeof product.imagem === "string" ? product.imagem : ""
+        };
+
+        const existing = cart.find(saved => 
+            saved.nome === item.nome && saved.corte === item.corte && saved.unidade === item.unidade
+        );
+
+        if (existing) existing.quantidade += item.quantidade;
+        else cart.push(item);
+
+        saveCart();
+        refresh();
+        return true;
+    };
+
+    window.removeFromCart = function (index) {
+        if (index >= 0 && index < cart.length) {
+            cart.splice(index, 1);
+            saveCart();
+            refresh();
+        }
+    };
+
+    const checkoutButton = document.getElementById("checkoutBtn");
+    if (checkoutButton) {
+        checkoutButton.addEventListener("click", () => {
+            if (cart.length === 0) return alert("Carrinho vazio!");
+            
+            let msg = "Olá, Empório GE! Gostaria de fazer o seguinte pedido:\n\n";
+            cart.forEach(item => {
+                const option = item.corte && !["Padrão", "Oferta"].includes(item.corte) ? ` (${item.corte})` : "";
+                msg += `• ${item.nome}${option}\n`;
+                msg += `  Qtd: ${item.quantidade} ${item.unidade} | Subtotal: ${formatBRL(item.preco * item.quantidade)}\n\n`;
+            });
+            msg += `*TOTAL DO PEDIDO: ${formatBRL(totalPrice())}*`;
+            
+            window.open(`https://wa.me/5581986836253?text=${encodeURIComponent(msg)}`, "_blank");
+        });
+    }
+
+    window.addEventListener("storage", (event) => {
+        if (event.key === storageKey) { cart = loadCart(); refresh(); }
+    });
+
+    refresh();
 })();

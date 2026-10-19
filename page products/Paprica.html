@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Páprica — Empório GE</title>
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/productStyle.css">
+    <link rel="stylesheet" href="../style/cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/png">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-header__nav" aria-label="Navegação principal">
+            <ul class="site-header__links site-header__links--left">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#ofertas">Ofertas</a></li>
+            </ul>
+            <a class="site-header__logo" href="../index.html" aria-label="Empório GE"><img src="../images/logo.png" alt="Logo"></a>
+            <ul class="site-header__links site-header__links--right">
+                <li><a href="../index.html#catalogo">Catálogo</a></li>
+                <li><a href="../index.html#contato">Contato</a></li>
+            </ul>
+            <button class="site-header__hamburger" type="button" aria-label="Abrir menu" aria-controls="mobile-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+        </nav>
+    </header>
+    <div class="mobile-nav__backdrop" data-close-menu hidden></div>
+    <div class="mobile-nav" id="mobile-navigation" role="dialog" aria-modal="true" aria-label="Navegação" hidden>
+        <button class="mobile-nav__close" type="button" aria-label="Fechar menu">&times;</button>
+        <a href="../index.html">Home</a><a href="../index.html#ofertas">Ofertas</a><a href="../index.html#catalogo">Catálogo</a><a href="../index.html#contato">Contato</a>
+    </div>
+
+    <main class="product-page">
+        <nav class="product-page__breadcrumb" aria-label="Navegação estrutural">
+            <a href="../index.html">Home</a> <span>›</span> <a href="../index.html#catalogo">Catálogo</a> <span>›</span> <span>Páprica</span>
+        </nav>
+        <div class="product-page__grid">
+            <div class="product-gallery">
+                <div class="product-gallery__main"><img id="mainImage" src="../images/Páprica.jpg" alt="Páprica"></div>
+                <div class="product-gallery__thumbs">
+                    <button class="product-gallery__thumb is-active" type="button" data-image="../images/Páprica.jpg"><img src="../images/Páprica.jpg" alt="Páprica"></button>
+                </div>
+            </div>
+            <div class="product-info">
+                <p class="product-info__category">Temperos</p>
+                <h1 class="product-info__title" id="productName">Páprica</h1>
+                <p class="product-info__price" id="productPrice" data-price="3.00">R$ 3,00 <span>/ pacote</span></p>
+                <form class="product-form" id="productForm">
+                    <div class="product-form__row">
+                        <div class="product-form__field">
+                            <label for="cutType">Opção</label>
+                            <select id="cutType" name="cut">
+                                <option value="Pacote">Pacote Fechado</option>
+                            </select>
+                        </div>
+                        <div class="product-form__field">
+                            <label for="quantity">Quantidade (pacotes)</label>
+                            <div class="product-form__quantity">
+                                <button type="button" class="product-form__qty-btn" data-action="minus">−</button>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="50">
+                                <button type="button" class="product-form__qty-btn" data-action="plus">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="product-form__submit" data-action="whatsapp" style="background: transparent; border: 1px solid goldenrod; color: goldenrod; margin-top: 10px;"><i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp</button>
+                    <button type="submit" class="product-form__submit" data-action="cart"><i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho</button>
+                </form>
+                <div class="product-info__description">
+                    <h2>Sobre o produto</h2>
+                    <p>Tempero vibrante e levemente picante, extraído de pimentões secos. Dá cor e sabor inconfundíveis a carnes, peixes e aves.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer" id="contato">
+        <div class="footer__waves"><div class="wave" id="wave1"></div><div class="wave" id="wave2"></div></div>
+        <div class="footer-container"><p>&copy; 2026 Empório GE. Todos os direitos reservados.</p><p class="slogan">🐟 O melhor pescado da região</p></div>
+    </footer>
+    <script src="../js/header.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/carrinho.js"></script>
+</body>
+</html>

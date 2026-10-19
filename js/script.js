@@ -1,213 +1,105 @@
-/* =========================================================
-   CARROSSEL AUTOMÁTICO DAS OFERTAS
-   ========================================================= */
+(() => {
+    "use strict";
 
-   const carrossel = document.querySelector(".carrossel");
+    const formatBRL = (value) => Number(value).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-   if (carrossel) {
-       let velocidade = 1;
-       let pausado = false;
-   
-       function moverCarrossel() {
-           if (pausado) return;
-   
-           carrossel.scrollBy({ left: velocidade, behavior: 'instant' });
-   
-           if (carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 1) {
-               velocidade = -1;
-           }
-   
-           if (carrossel.scrollLeft <= 0) {
-               velocidade = 1;
-           }
-       }
-   
-       setInterval(moverCarrossel, 30);
-   
-       // Pausa o auto-scroll quando o usuário interage
-       carrossel.addEventListener("mouseenter", () => { pausado = true; });
-       carrossel.addEventListener("mouseleave", () => { pausado = false; });
-       carrossel.addEventListener("touchstart", () => { pausado = true; });
-       carrossel.addEventListener("touchend", () => { pausado = false; });
-   }
-   
-   /* =========================================================
-      CATÁLOGO DE PRODUTOS
-      ========================================================= */
-   
-   const produtos = [
-       { 
-           nome: "Atum", 
-           preco: "R$ 22,00", 
-           unidade: "500g", 
-           imagem: "images/atum.jpg", 
-           link: "page products/Atum.html" 
-       },
-       { 
-           nome: "Corvina", 
-           preco: "R$ 19,00", 
-           unidade: "kg", 
-           imagem: "images/Corvina.webp", 
-           link: "page products/Corvina.html" 
-       },
-       { 
-           nome: "Filé Tilápia", 
-           preco: "R$ 20,00", 
-           unidade: "kg", 
-           imagem: "images/fileti.webp", 
-           link: "page products/fileti.html" 
-       },
-       { 
-           nome: "Tilápia", 
-           preco: "R$ 15,00", 
-           unidade: "kg", 
-           imagem: "images/tilapia.jpg", 
-           link: "page products/tilapia.html" 
-       },
-       { 
-           nome: "Sardinha", 
-           preco: "R$ 10,00", 
-           unidade: "800g", 
-           imagem: "images/Sardinha.jpg", 
-           link: "page products/Sardinha.html" 
-       },
-       { 
-           nome: "Camarão", 
-           preco: "R$ 45,00", 
-           unidade: "kg", 
-           imagem: "images/Camarao.jpg", 
-           icone: "fa-shrimp", 
-           link: "page products/camarao.html" 
-       },
-       { 
-           nome: "Ovos", 
-           preco: "R$ 20,00", 
-           unidade: "dúzia", 
-           imagem: "images/Eggs.jpg", 
-           icone: "fa-egg", 
-           link: "page products/ovos.html" 
-       },
-       { 
-           nome: "Chimichurri", 
-           preco: "R$ 3,00", 
-           unidade: "Pacote", 
-           imagem: "images/Chimichurri.jpg", 
-           icone: "fa-mortar-pestle", 
-           link: "page products/chimichurri.html" 
-       },
-       { 
-           nome: "Páprica", 
-           preco: "R$ 3,00", 
-           unidade: "Pacote", 
-           imagem: "images/Páprica.jpg", 
-           icone: "fa-pepper-hot", 
-           link: "page products/paprica.html" 
-       },
-       { 
-           nome: "Colorau", 
-           preco: "R$ 2,00", 
-           unidade: "Pacote", 
-           imagem: "images/Colorau.jpg", 
-           icone: "fa-pepper-hot", 
-           link: "page products/colorau.html" 
-       },
-       { 
-           nome: "Lemon Pepper", 
-           preco: "R$ 14,00", 
-           unidade: "pote", 
-           imagem: "images/Lemon-Peper.avif", 
-           icone: "fa-lemon", 
-           link: "page products/lemon-pepper.html" 
-       },
-       { 
-           nome: "Açafrão", 
-           preco: "R$ 3,00", 
-           unidade: "Pacote", 
-           imagem: "images/acafrao.avif", 
-           icone: "fa-mortar-pestle", 
-           link: "page products/acafrao.html" 
-       },
-       { 
-           nome: "Pasta de Brilho", 
-           preco: "R$ 3,00", 
-           unidade: "Pote", 
-           imagem: "images/pasta-brilho.jpeg", 
-           icone: "fa-pasta-brilho", 
-           link: "page products/pasta-brilho.html"
-       }   
+    // Carrossel
+    const carrossel = document.querySelector(".carrossel");
+    if (carrossel && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let direction = 1;
+        let paused = false;
+        const moveCarousel = () => {
+            if (paused || carrossel.scrollWidth <= carrossel.clientWidth + 2) return;
+            carrossel.scrollLeft += direction;
+            if (carrossel.scrollLeft + carrossel.clientWidth >= carrossel.scrollWidth - 1) direction = -1;
+            else if (carrossel.scrollLeft <= 0) direction = 1;
+        };
+        window.setInterval(moveCarousel, 30);
+        ["mouseenter", "focusin", "touchstart"].forEach(e => carrossel.addEventListener(e, () => paused = true));
+        ["mouseleave", "focusout", "touchend"].forEach(e => carrossel.addEventListener(e, () => paused = false));
+    }
 
-   ];
-   
-   const listaProdutos = document.getElementById("listaProdutos");
-   
-   function mostrarProdutos(lista) {
-       listaProdutos.innerHTML = "";
-   
-       lista.forEach((produto, index) => {
-           const card = document.createElement("article");
-           card.classList.add("produto");
-           card.style.animationDelay = `${index * 0.06}s`;
-   
-           // Define a unidade padrão como "kg" caso não esteja especificada
-           const unidade = produto.unidade || "kg";
-   
-           // Se tiver imagem, usa a imagem. Se não, usa o ícone.
-           const conteudoImagem = produto.imagem
-               ? `<img src="${produto.imagem}" alt="${produto.nome}">`
-               : `<div class="produto-sem-imagem">
-                      <i class="fa-solid ${produto.icone || 'fa-fish'}"></i>
-                  </div>`;
-   
-           card.innerHTML = `
-               <div class="produto-imagem">
-                   ${conteudoImagem}
-               </div>
-               <div class="produto-info">
-                   <h3 class="produto-nome">${produto.nome}</h3>
-                   <p class="produto-preco">${produto.preco} <span>/ ${unidade}</span></p>
-                   <a href="${produto.link}" class="produto-botao">
-                       Comprar
-                       <i class="fa-solid fa-arrow-right"></i>
-                   </a>
-               </div>
-           `;
-   
-           listaProdutos.appendChild(card);
-       });
-   }
-   
-   mostrarProdutos(produtos);
-   
-   /* =========================================================
-      PESQUISA
-      ========================================================= */
-   
-   const abrirPesquisa = document.getElementById("abrirPesquisa");
-   const fecharPesquisa = document.getElementById("fecharPesquisa");
-   const searchOverlay = document.getElementById("searchOverlay");
-   const campoPesquisa = document.getElementById("campoPesquisa");
-   
-   abrirPesquisa.addEventListener("click", () => {
-       searchOverlay.classList.add("ativo");
-       campoPesquisa.focus();
-   });
-   
-   fecharPesquisa.addEventListener("click", () => {
-       searchOverlay.classList.remove("ativo");
-   });
-   
-   campoPesquisa.addEventListener("input", () => {
-       const texto = campoPesquisa.value.toLowerCase().trim();
-   
-       const resultados = produtos.filter(produto =>
-           produto.nome.toLowerCase().includes(texto)
-       );
-   
-       mostrarProdutos(resultados);
-   });
-   
-   document.addEventListener("keydown", (e) => {
-       if (e.key === "Escape" && searchOverlay.classList.contains("ativo")) {
-           searchOverlay.classList.remove("ativo");
-       }
-   });
+    // Catálogo (Adicionei os caminhos dos temperos e botões de carrinho direto)
+    const produtos = [
+        { nome: "Atum", preco: 10, unidade: "500g", imagem: "images/atum.jpg", link: "page products/Atum.html" },
+        { nome: "Corvina", preco: 19, unidade: "kg", imagem: "images/Corvina.webp", link: "page products/Corvina.html" },
+        { nome: "Filé Tilápia", preco: 20, unidade: "kg", imagem: "images/fileti.webp", link: "page products/Filé-Tilápia.html" },
+        { nome: "Tilápia", preco: 15, unidade: "kg", imagem: "images/tilapia.jpg", link: "page products/tilapia.html" },
+        { nome: "Sardinha", preco: 10, unidade: "pacote de 800g", imagem: "images/Sardinha.jpg", link: "page products/Sardinha.html" },
+        { nome: "Camarão", preco: 45, unidade: "kg", imagem: "images/Camarao.jpg", link: "page products/camarao.html" },
+        { nome: "Ovos", preco: 20, unidade: "dúzia", imagem: "images/Eggs.jpg", link: "page products/ovos.html" },
+        { nome: "Chimichurri", preco: 3, unidade: "pacote", imagem: "images/Chimichurri.jpg", link: "page products/Chimichurri.html" },
+        { nome: "Páprica", preco: 3, unidade: "pacote", imagem: "images/Páprica.jpg", link: "page products/Paprica.html" },
+        { nome: "Colorau", preco: 2, unidade: "pacote", imagem: "images/Colorau.jpg", link: "page products/Colorau.html" },
+        { nome: "Lemon Pepper", preco: 14, unidade: "pote", imagem: "images/Lemon-Peper.avif", link: "page products/Lemon.html" },
+        { nome: "Açafrão", preco: 3, unidade: "pacote", imagem: "images/acafrao.avif", link: "page products/Acafrao.html" },
+        { nome: "Pasta de Brilho", preco: 3, unidade: "pote", imagem: "images/Pasta-brilho.jpeg", link: "page products/Pasta.html" }
+    ];
+
+    const listaProdutos = document.getElementById("listaProdutos");
+
+    function adicionarAoCarrinho(produto) {
+        if (typeof window.addToCart !== "function") return alert("Carrinho carregando...");
+        window.addToCart({
+            nome: produto.nome,
+            preco: produto.preco,
+            corte: "Padrão",
+            unidade: produto.unidade,
+            quantidade: 1,
+            imagem: produto.imagem ? new URL(produto.imagem, document.baseURI).href : ""
+        });
+    }
+
+    function mostrarProdutos(lista) {
+        if (!listaProdutos) return;
+        listaProdutos.replaceChildren();
+
+        lista.forEach((produto, index) => {
+            const card = document.createElement("article");
+            card.className = "produto";
+            card.style.animationDelay = `${index * 0.06}s`;
+
+            const img = produto.imagem ? `<img src="${produto.imagem}" alt="${produto.nome}" loading="lazy">` : `<div class="produto-sem-imagem"><i class="fa-solid ${produto.icone || 'fa-fish'}"></i></div>`;
+            
+            const btn = produto.link 
+                ? `<a href="${produto.link}" class="produto-botao">Comprar <i class="fa-solid fa-arrow-right"></i></a>`
+                : `<button type="button" class="produto-botao produto-botao--cart">Adicionar <i class="fa-solid fa-cart-shopping"></i></button>`;
+
+            card.innerHTML = `
+                <div class="produto-imagem">${img}</div>
+                <div class="produto-info">
+                    <h3 class="produto-nome">${produto.nome}</h3>
+                    <p class="produto-preco">${formatBRL(produto.preco)} <span>/ ${produto.unidade}</span></p>
+                    ${btn}
+                </div>
+            `;
+
+            const cartBtn = card.querySelector(".produto-botao--cart");
+            if (cartBtn) cartBtn.addEventListener("click", () => adicionarAoCarrinho(produto));
+
+            listaProdutos.appendChild(card);
+        });
+    }
+
+    mostrarProdutos(produtos);
+
+    // Pesquisa
+    const abrirPesquisa = document.getElementById("abrirPesquisa");
+    const fecharPesquisa = document.getElementById("fecharPesquisa");
+    const searchOverlay = document.getElementById("searchOverlay");
+    const campoPesquisa = document.getElementById("campoPesquisa");
+
+    if (abrirPesquisa) abrirPesquisa.addEventListener("click", () => { searchOverlay.classList.add("ativo"); campoPesquisa.focus(); });
+    if (fecharPesquisa) fecharPesquisa.addEventListener("click", () => searchOverlay.classList.remove("ativo"));
+
+    if (campoPesquisa) {
+        campoPesquisa.addEventListener("input", () => {
+            const query = campoPesquisa.value.toLowerCase().trim();
+            mostrarProdutos(produtos.filter(p => p.nome.toLowerCase().includes(query)));
+        });
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && searchOverlay?.classList.contains("ativo")) searchOverlay.classList.remove("ativo");
+    });
+})();
