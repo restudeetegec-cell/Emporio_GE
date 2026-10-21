@@ -92,6 +92,7 @@
     align-items: center;
     justify-content: center;
     justify-self: center;
+    gap: 10px;
     padding: 0 20px;
 }
 
@@ -100,6 +101,16 @@
     height: 42px;
     width: auto;
     object-fit: contain;
+}
+
+.site-header__logo::after {
+    content: "EMPÓRIO GE";
+    display: inline-block;
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    white-space: nowrap;
 }
 
 /* Hambúrguer (só mobile) */
@@ -200,6 +211,12 @@ body.mobile-nav-open { overflow: hidden; }
     .site-header__logo {
         justify-self: start;
         padding: 0 8px;
+        gap: 8px;
+    }
+
+    .site-header__logo::after {
+        font-size: 12px;
+        letter-spacing: 0.6px;
     }
 
     .site-header__logo img { height: 36px; }

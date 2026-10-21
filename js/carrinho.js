@@ -3,13 +3,17 @@
 
     // Verifica se estamos na pasta "page products" para voltar um nível.
     // Se for a página do carrinho, ela também está na raiz, então não volta.
-    const isSubfolder = window.location.pathname.includes("page products");
-    const basePath = isSubfolder ? "../" : "";
     
-    // Link direto para o arquivo na raiz
-    const cartPageUrl = basePath + "carrinho.html";
-    const catalogUrl = basePath + "index.html#catalogo";
-    const storageKey = "emporioCart";
+    const currentPath = decodeURIComponent(window.location.pathname);
+
+    const isProductPage = currentPath.includes("/page products/");
+    const isCartPage = currentPath.endsWith("/carrinho/carrinho.html");
+
+    const basePath = (isProductPage || isCartPage) ? "../" : "";
+
+    const cartPageUrl = `${basePath}carrinho/carrinho.html`;
+    const catalogUrl = `${basePath}index.html#catalogo`;
+
 
     function loadCart() {
         try {
