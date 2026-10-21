@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camarão — Empório GE</title>
-
     <link rel="stylesheet" href="../style/main.css">
     <link rel="stylesheet" href="../style/header.css">
     <link rel="stylesheet" href="../style/productStyle.css">
     <link rel="stylesheet" href="../style/cart.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="shortcut icon" href="../images/Logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/logo.png" type="image/png">
 </head>
-
 <body>
     <header class="site-header">
         <nav class="site-header__nav" aria-label="Navegação principal">
@@ -25,7 +22,7 @@
                 <li><a href="../index.html#ofertas">Ofertas</a></li>
             </ul>
             <a class="site-header__logo" href="../index.html" aria-label="Empório GE">
-                <img src="../images/Logo.png" alt="Logo do Empório GE">
+                <img src="../images/logo.png" alt="Logo do Empório GE">
             </a>
             <ul class="site-header__links site-header__links--right">
                 <li><a href="../index.html#catalogo">Catálogo</a></li>
@@ -59,23 +56,27 @@
                     <img id="mainImage" src="../images/Camarao.jpg" alt="Camarão">
                 </div>
                 <div class="product-gallery__thumbs">
-                    <button class="product-gallery__thumb is-active" type="button" data-image="../images/Camarao.jpg">
+                    <button class="product-gallery__thumb is-active" type="button" data-image="../images/Camarao.jpg" aria-label="Ver imagem principal do camarão">
                         <img src="../images/Camarao.jpg" alt="Camarão">
                     </button>
-                    <button class="product-gallery__thumb" type="button" data-image="../images/camarao1.jpg">
-                        <img src="../images/camarao1.jpg" alt="Camarão 2">
+                    <button class="product-gallery__thumb" type="button" data-image="../images/Camarao1.jpg" aria-label="Ver segunda imagem do camarão">
+                        <img src="../images/Camarao1.jpg" alt="Camarão, segunda imagem">
                     </button>
-                    <button class="product-gallery__thumb" type="button" data-image="../images/camarao2.jpg">
-                        <img src="../images/camarao2.jpg" alt="Camarão 3">
+                    <button class="product-gallery__thumb" type="button" data-image="../images/Camarao2.jpg" aria-label="Ver terceira imagem do camarão">
+                        <img src="../images/Camarao2.jpg" alt="Camarão, terceira imagem">
                     </button>
                 </div>
             </div>
 
             <div class="product-info">
                 <p class="product-info__category">Frutos do Mar</p>
-                
                 <h1 class="product-info__title" id="productName">Camarão</h1>
-                <p class="product-info__price" id="productPrice" data-price="45.00">R$ 45,00 <span>/ kg</span></p>
+
+                <p class="product-info__price product-info__price--offer" id="productPrice" data-original-price="45.00" data-price="40.50">
+                    <span class="product-info__price-original">R$ 45,00</span>
+                    <span class="product-info__price-current">R$ 40,50</span>
+                    <span class="product-info__price-unit">/ kg</span>
+                </p>
 
                 <form class="product-form" id="productForm">
                     <div class="product-form__row">
@@ -89,25 +90,24 @@
                         <div class="product-form__field">
                             <label for="quantity">Quantidade (kg)</label>
                             <div class="product-form__quantity">
-                                <button type="button" class="product-form__qty-btn" data-action="minus">−</button>
-                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="20">
-                                <button type="button" class="product-form__qty-btn" data-action="plus">+</button>
+                                <button type="button" class="product-form__qty-btn" data-action="minus" aria-label="Diminuir quantidade">−</button>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" max="20" step="1" required>
+                                <button type="button" class="product-form__qty-btn" data-action="plus" aria-label="Aumentar quantidade">+</button>
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="product-form__submit">
-                        <i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp
+                    
+                    <button type="submit" class="product-form__submit" data-action="whatsapp">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Encomendar no WhatsApp
                     </button>
-
-                    <button type="submit" class="product-form__submit">
-                        <i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho
+                    <button type="submit" class="product-form__submit" data-action="cart">
+                        <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i> Adicionar ao Carrinho
                     </button>
                 </form>
 
                 <div class="product-info__description">
                     <h2>Sobre o produto</h2>
-                    <p>Camarão fresco, selecionado e de excelente qualidade. Perfeito para receitas grelhadas, refogados, risotos ou para a famosa sequência de camarão. Vendido por quilo, pode ser encomendado com ou sem casca.</p>
+                    <p>Camarão fresco, selecionado e de excelente qualidade. Perfeito para receitas grelhadas, refogados, risotos ou para a famosa sequência de camarão.</p>
                 </div>
             </div>
         </div>
@@ -126,6 +126,6 @@
 
     <script src="../js/header.js"></script>
     <script src="../js/product.js"></script>
-    <script src="../js/carrinho.js"></script> 
+    <script src="../js/carrinho.js"></script>
 </body>
 </html>

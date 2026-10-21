@@ -1,103 +1,87 @@
-## 🖥️ Prévia do projeto
-
-> A imagem abaixo apresenta uma prévia do site em desenvolvimento.
-
-![Prévia do site do Empório GE](images/previa.png)
-
----
-
-# 🐟 Empório GE
-
-Site institucional e catálogo digital desenvolvido para o **Empório GE**, uma peixaria local, como parte da disciplina **Atividades Interdisciplinares de Extensão I**, na área temática de Tecnologia.
-
-O projeto busca aplicar conhecimentos de Tecnologia da Informação na criação de soluções que atendam às necessidades identificadas no estabelecimento, contribuindo para a divulgação dos produtos e para a melhoria de processos internos.
-
----
-
-## 📚 Sobre o projeto
-
-O **Empório GE** é uma peixaria que comercializa diferentes tipos de pescados.
-
-Durante o desenvolvimento do projeto de extensão, foi identificada a oportunidade de utilizar soluções tecnológicas para auxiliar tanto na **divulgação dos produtos** quanto na **organização dos processos internos** do estabelecimento.
-
-A proposta foi dividida em duas soluções principais:
-
-- 🌐 **Site:** apresentação dos produtos, ofertas e informações do Empório GE;
-- 📱 **Aplicativo:** auxílio no controle de entrada e saída de produtos.
-
-Este repositório é destinado ao desenvolvimento do **site do Empório GE**.
+<div align="center">
+  <img src="images/logo.png" alt="Empório GE Logo" width="150" />
+  
+  # 🐟 Empório GE
+  
+  **O melhor pescado da região, agora a um clique de distância.**
+  
+  [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)]()
+  [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)]()
+  [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)]()
+  
+  *Uma plataforma moderna de e-commerce para a peixaria Empório GE, focada em UX, acessibilidade e integração direta com WhatsApp.*
+</div>
 
 ---
 
-## 🎯 Objetivos
+## 🚀 Sobre o Projeto
 
-### Objetivo geral
+O **Empório GE** é um site institucional e de vendas desenvolvido para modernizar a experiência de compra de pescados e frutos do mar. O grande diferencial é o sistema de carrinho de compras nativo (construído do zero com Vanilla JavaScript), que permite aos clientes navegar, adicionar produtos e finalizar o pedido diretamente no WhatsApp da loja.
 
-Desenvolver uma solução web para modernizar a apresentação dos produtos do Empório GE, facilitando o acesso dos clientes às ofertas e ao catálogo de produtos.
+O design foi inspirado em referências de restaurantes premium, adotando um tema escuro (*Dark Mode*) com detalhes em dourado (`goldenrod`), utilizando a tipografia **Montserrat** para uma leitura limpa e sofisticada.
 
-### Objetivos específicos
+## ✨ Funcionalidades
 
-- Criar uma presença digital para o estabelecimento;
-- Apresentar os produtos de forma organizada;
-- Destacar ofertas e promoções;
-- Desenvolver uma interface simples e intuitiva;
-- Facilitar o acesso às informações dos produtos;
-- Criar uma estrutura que possa futuramente receber funcionalidades relacionadas a pedidos e delivery.
-
----
-
-## 💻 Tecnologias utilizadas
-
-O projeto utiliza tecnologias fundamentais para o desenvolvimento web:
-
-- **HTML5** — estruturação das páginas;
-- **CSS3** — estilização e organização visual;
-- **JavaScript** — implementação de comportamentos e interações.
+- **Página Inicial Dinâmica:** Hero slider, seções de ofertas, catálogo interativo e mapa de localização.
+- **Catálogo Inteligente:** Filtro de busca em tempo real com atualização suave dos produtos.
+- **Páginas Individuais de Produto:** Galeria de imagens (com thumbnails), seletores de corte, quantidade e descrições detalhadas.
+- **Carrinho de Compras Global:**
+  - Persistência de dados via `localStorage` (não perde o pedido ao mudar de página).
+  - Widget flutuante com prévia lateral (*hover*) e contador de itens em tempo real.
+  - Página dedicada para revisão do pedido.
+- **Checkout via WhatsApp:** O carrinho gera uma mensagem pré-formatada com todos os itens, quantidades, subtotais e o valor total da compra.
+- **Design 100% Responsivo:** Layout adaptável para Desktop, Tablet e Mobile (com menu hambúrguer customizado).
 
 ---
 
-## 🗂️ Estrutura do projeto
+## 🛠️ Como rodar o projeto localmente
 
-```text
-Emporio_GE/
-│
-├── images/
-│   ├── atum.jpg
-│   ├── Corvina.webp
-│   ├── fileti.webp
-│   ├── fundo.png
-│   ├── Logo.png
-│   ├── peixaria.jpg
-│   ├── previa.jpg
-│   ├── peixe.jpg
-│   ├── produto.jpg
-│   ├── Sardinha.jpg
-│   ├── tilapia.jpg
-│   └── zap.png
-│
-├── js/
-│   ├── header.js
-│   ├── hero.js
-│   └── script.js
-│
-├── style/
-│   ├── header.css
-│   ├── hero.css
-│   └── main.css
-│
-├── index.html
-└── README.md
+O projeto é construído apenas com tecnologias front-end nativas, sem a necessidade de *build steps* (Webpack, Vite, etc.).
 
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/restudeetegec-cell/Emporio_GE.git
 
-## 👥 Equipe
+2. **Acesse a pasta do projeto:**
+    cd Emporio_GE
 
-Projeto desenvolvido por alunos do Projeto desenvolvido por alunos do curso de Ciência da Computação(UNINASSAU).
-do curso de Ciência da Computação.
+3. **Inicie um servidor local:**
+    python -m http.server 5500
 
-Os discentes em questão:
+## 📁 Estrutura de Pastas
 
-- Akilles Rodrigues                            - Matheus Cabral Cavalcanti
-- Cauã Falcão Da Silva Nascimento              - Murilo Noceda da Cunha Lemes Cavalcanti
-- Guilherme Santos Pessoa De Melo              - Rafael Arcanjo dos Santos Alves
-- James de Sousa Veríssimo                     - Rayane Luma Rodrigues da Silva
-- Maick Ferreira Nascimento                    - Victor Gabriel Baracho da Rocha
+📦 Emporio_GE
+ ┣ 📂 images/            # Assets visuais (fotos dos produtos, logo, backgrounds)
+ ┣ 📂 js/                # Lógica JavaScript
+ ┃ ┣ 📜 carrinho.js      # Gerenciamento global do carrinho (localStorage)
+ ┃ ┣ 📜 header.js        # Lógica do menu mobile e acessibilidade
+ ┃ ┣ 📜 hero.js          # Slider automático da página inicial
+ ┃ ┣ 📜 product.js       # Lógica das páginas de produto (galeria e adicionar ao carrinho)
+ ┃ ┗ 📜 script.js        # Geração do catálogo, busca e carrossel de ofertas
+ ┣ 📂 page products/     # Páginas HTML individuais de cada produto
+ ┣ 📂 style/             # Estilização
+ ┃ ┣ 📜 main.css         # Estilos globais, variáveis e catálogo
+ ┃ ┣ 📜 header.css       # Estilos da navegação (navbar flutuante)
+ ┃ ┣ 📜 cart.css         # Estilos do carrinho e prévia lateral
+ ┃ ┣ 📜 productStyle.css # Estilos das páginas de produto
+ ┃ ┗ 📜 location.css     # Estilos da seção "Visite-nos" e mapa
+ ┣ 📜 index.html         # Página principal
+ ┣ 📜 carrinho.html      # Página de finalização do carrinho
+ ┗ 📜 README.md
+
+ ## 🤝 Agradecimentos e Créditos
+
+· @restudeetegec-cell — Idealizador do projeto
+
+· Guilherme Pessoa (Santos-DevLab) 
+
+· Davi Melo (melo-rs)
+
+· James Veríssimo (JamesV500)
+
+· Victor Baracho (vt-baracho)
+
+Referências Visuais — Inspirado no design premium e minimalista de sites como Rumorosa, Slate Cafe, Via Quadronno e ONIBUS COFFEE.
+
+<div align="center"> <p>Feito com 🐟 e muito código para o <strong>Empório GE</strong>.</p> <p>&copy; 2026 Empório GE. Todos os direitos reservados.</p> </div> ```
