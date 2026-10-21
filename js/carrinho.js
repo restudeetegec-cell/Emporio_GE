@@ -14,6 +14,8 @@
     const cartPageUrl = `${basePath}carrinho/carrinho.html`;
     const catalogUrl = `${basePath}index.html#catalogo`;
 
+    const storageKey = "emporioGE_cart"
+
 
     function loadCart() {
         try {
@@ -167,6 +169,60 @@
         refresh();
         return true;
     };
+// Adiciona as ofertas da página inicial ao carrinho.
+document.querySelectorAll("[data-add-offer]").forEach((button) => {
+    button.addEventListener("click", () => {
+        const card = button.closest(".oferta");
+        if (!card) return;
+
+        const nameElement = card.querySelector(".oferta__nome");
+        const priceElement = card.querySelector(".oferta__preco");
+        const imageElement = card.querySelector(".oferta__imagem img");
+
+        if (!nameElement || !priceElement) return;
+
+        // Converte, por exemplo, "R$ 22,00" para 22.00.
+        const priceMatch = priceElement.textContent.match(
+            /R\$\s*([\d.]+,\d{2})/
+        );
+
+        if (!priceMatch) {
+            alert("Não foi possível identificar o preço da oferta.");
+            return;
+        }
+
+        const price = Number(
+            priceMatch[1].replace(/\./g, "").replace(",", ".")
+        );
+
+        const unitElement = priceElement.querySelector("span");
+        const unit = unitElement
+            ? unitElement.textContent.replace("/", "").trim()
+            : "unidade";
+
+        const added = window.addToCart({
+            nome: nameElement.textContent.trim(),
+            preco: price,
+            corte: "Oferta",
+            unidade: unit,
+            quantidade: 1,
+            imagem: imageElement ? imageElement.src : ""
+        });
+
+        if (added) {
+            const originalText = button.innerHTML;
+            button.innerHTML =
+                'Adicionado! <i class="fa-solid fa-check"></i>';
+
+            button.disabled = true;
+
+            window.setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 1200);
+        }
+    });
+});
 
     window.removeFromCart = function (index) {
         if (index >= 0 && index < cart.length) {

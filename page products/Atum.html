@@ -104,15 +104,23 @@
                         </div>
                     </div>
                     
-                    <!-- BOTÃO 1: Adicionar ao Carrinho (Fica dentro do form, envia para o JS) -->
-                    <button type="submit" class="product-form__submit" style="background: goldenrod; color: #0b0b0b; border: 0;">
-                        <i class="fa-solid fa-cart-shopping"></i> Adicionar ao Carrinho
+                    <button
+                        type="submit"
+                        class="product-form__submit"
+                        data-action="whatsapp"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i>
+                        Encomendar no WhatsApp
                     </button>
 
-                    <!-- BOTÃO 2: WhatsApp (Link externo que puxa os valores do form) -->
-                    <a href="https://wa.me/5581986836253" id="btnWhatsapp" target="_blank" class="product-form__submit" style="background: transparent; border: 1px solid goldenrod; color: goldenrod; text-decoration: none; margin-top: 10px;">
-                        <i class="fa-brands fa-whatsapp"></i> Encomendar no WhatsApp
-                    </a>
+                    <button
+                        type="submit"
+                        class="product-form__submit"
+                        data-action="cart"
+                    >
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Adicionar ao Carrinho
+                    </button>
                 </form>
 
                 <div class="product-info__description">
@@ -138,8 +146,8 @@
     </footer>
 
     <!-- JS -->
-    <script src="/js/header.js"></script>
-    <script src="/js/product.js"></script>
-    <script src="/js/carrinho.js"></script> 
+    <script src="../js/header.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/carrinho.js"></script> 
 </body>
 </html>

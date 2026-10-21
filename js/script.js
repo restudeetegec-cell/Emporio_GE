@@ -31,9 +31,9 @@
         { nome: "Chimichurri", preco: 3, unidade: "pacote", imagem: "images/Chimichurri.jpg", link: "page products/Chimichurri.html" },
         { nome: "Páprica", preco: 3, unidade: "pacote", imagem: "images/Páprica.jpg", link: "page products/Paprica.html" },
         { nome: "Colorau", preco: 2, unidade: "pacote", imagem: "images/Colorau.jpg", link: "page products/Colorau.html" },
-        { nome: "Lemon Pepper", preco: 14, unidade: "pote", imagem: "images/Lemon-Peper.avif", link: "page products/Lemon.html" },
+        { nome: "Lemon Pepper", preco: 4, unidade: "pote", imagem: "images/Lemon-Peper.avif", link: "page products/Lemon.html" },
         { nome: "Açafrão", preco: 3, unidade: "pacote", imagem: "images/acafrao.avif", link: "page products/Acafrao.html" },
-        { nome: "Pasta de Brilho", preco: 3, unidade: "pote", imagem: "images/Pasta-brilho.jpeg", link: "page products/Pasta.html" }
+        { nome: "Pasta de Brilho", preco: 6, unidade: "pote", imagem: "images/Pasta-brilho.jpeg", link: "page products/Pasta.html" }
     ];
 
     const listaProdutos = document.getElementById("listaProdutos");

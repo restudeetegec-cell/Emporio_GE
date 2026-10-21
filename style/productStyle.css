@@ -380,3 +380,33 @@ height: 40%;
         font-size: 26px;
     }
 }
+
+
+/* Preços nas páginas de produtos em oferta */
+.product-info__price--offer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.product-info__price--offer .product-info__price-original {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.product-info__price--offer .product-info__price-current {
+    font-family: "Courier New", monospace;
+    font-size: 26px;
+    font-weight: 700;
+    color: goldenrod;
+}
+
+.product-info__price--offer .product-info__price-unit {
+    font-size: 14px;
+    font-weight: 400;
+    color: #888;
+}

@@ -75,7 +75,11 @@
                 <p class="product-info__category">Pescado Fresco</p>
                 
                 <h1 class="product-info__title" id="productName">Tilápia</h1>
-                <p class="product-info__price" id="productPrice" data-price="15.00">R$ 15,00 <span>/ kg</span></p>
+                <p class="product-info__price product-info__price--offer" id="productPrice" data-original-price="ORIGINAL" data-price="PROMO">
+                    <span class="product-info__price-original">R$ 15,00</span>
+                    <span class="product-info__price-current">R$ 11,75 </span>
+                    <span class="product-info__price-unit">/ kg</span>
+                </p>
 
                 <form class="product-form" id="productForm">
                     <div class="product-form__row">
@@ -124,8 +128,8 @@
         </div>
     </footer>
 
-    <script src="/js/header.js"></script>
-    <script src="/js/product.js"></script>
-    <script src="/js/carrinho.js"></script> 
+    <script src="../js/header.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/carrinho.js"></script> 
 </body>
 </html>
