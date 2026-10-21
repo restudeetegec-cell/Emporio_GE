@@ -92,8 +92,7 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
  ┃ ┣ 📜 main.css         # Estilos globais, variáveis e catálogo
  ┃ ┣ 📜 header.css       # Estilos da navegação (navbar flutuante)
  ┃ ┣ 📜 cart.css         # Estilos do carrinho e prévia lateral
- ┃ ┣ 📜 productStyle.css # Estilos das páginas de produto
- ┃ ┗ 📜 location.css     # Estilos da seção "Visite-nos" e mapa
+ ┃ ┗ 📜 productStyle.css # Estilos das páginas de produto
  ┣ 📜 index.html         # Página principal
  ┣ 📜 carrinho.html      # Página de finalização do carrinho
  ┗ 📜 README.md
@@ -112,13 +111,13 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
 
 · @restudeetegec-cell — Idealizador do projeto
 
-· Guilherme Pessoa (Santos-DevLab) 
+· Victor Baracho (vt-baracho)
 
 · Davi Melo (melo-rs)
 
 · James Veríssimo (JamesV500)
-
-· Victor Baracho (vt-baracho)
+ 
+· Guilherme Pessoa (Santos-DevLab)
 
 · Referências Visuais — Inspirado no design premium e minimalista de sites como Rumorosa, Slate  
 Cafe, Via Quadronno e ONIBUS COFFEE.
