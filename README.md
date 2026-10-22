@@ -89,37 +89,37 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
 
 A estrutura principal do projeto está organizada da seguinte forma:
 
-Emporio_GE/
-├── images/                  # Imagens dos produtos, logo e backgrounds
-├── js/                      # Scripts e funcionalidades JavaScript
-│   ├── carrinho.js          # Gerenciamento do carrinho e localStorage
-│   ├── header.js            # Menu mobile e recursos de acessibilidade
-│   ├── hero.js              # Slider automático da página inicial
-│   ├── product.js           # Galeria de produtos e ações do carrinho
-│   └── script.js            # Catálogo, busca e carrossel de ofertas
-├── page products/           # Páginas HTML individuais dos produtos
-├── style/                   # Arquivos de estilização CSS
-│   ├── main.css             # Estilos globais, variáveis e catálogo
-│   ├── header.css           # Estilos da navegação
-│   ├── cart.css             # Carrinho e prévia lateral
-│   └── productStyle.css     # Estilos das páginas de produto
-├── index.html               # Página inicial
-├── carrinho.html            # Página do carrinho e finalização do pedido
-└── README.md                # Documentação do projeto
+- Emporio_GE/
+- ├── images/                  # Imagens dos produtos, logo e backgrounds
+- ├── js/                      # Scripts e funcionalidades JavaScript
+- │   ├── carrinho.js          # Gerenciamento do carrinho e localStorage
+- │   ├── header.js            # Menu mobile e recursos de acessibilidade
+- │   ├── hero.js              # Slider automático da página inicial
+- │   ├── product.js           # Galeria de produtos e ações do carrinho
+- │   └── script.js            # Catálogo, busca e carrossel de ofertas
+- ├── page products/           # Páginas HTML individuais dos produtos
+- ├── style/                   # Arquivos de estilização CSS
+- │   ├── main.css             # Estilos globais, variáveis e catálogo
+- │   ├── header.css           # Estilos da navegação
+- │   ├── cart.css             # Carrinho e prévia lateral
+- │   └── productStyle.css     # Estilos das páginas de produto
+- ├── index.html               # Página inicial
+- ├── carrinho.html            # Página do carrinho e finalização do pedido
+- └── README.md                # Documentação do projeto
 
  ## 🗺️ Roadmap (Próximos Passos)
 
 O front-end já conta com as principais funcionalidades de navegação, catálogo e carrinho. As próximas etapas estão voltadas à expansão e à administração da plataforma.
 
-- **✅ Funcionalidades Concluídas**
+ **✅ Funcionalidades Concluídas**
 
-- ▣ Interface responsiva para diferentes dispositivos.
-- ▣ Estrutura de navegação com recursos de acessibilidade.
-- ▣ Catálogo interativo com busca de produtos.
-- ▣ Páginas individuais com galeria de imagens.
-- ▣ Carrinho de compras com persistência via localStorage.
-- ▣ Prévia lateral e contador de itens do carrinho.
-- ▣ Checkout com geração do pedido para envio pelo WhatsApp.
+-  Interface responsiva para diferentes dispositivos.
+-  Estrutura de navegação com recursos de acessibilidade.
+-  Catálogo interativo com busca de produtos.
+-  Páginas individuais com galeria de imagens.
+-  Carrinho de compras com persistência via localStorage.
+-  Prévia lateral e contador de itens do carrinho.
+-  Checkout com geração do pedido para envio pelo WhatsApp.
 
  ## 🤝 Agradecimentos e Créditos
 
@@ -140,7 +140,7 @@ A identidade visual foi inspirada em interfaces de estabelecimentos que valoriza
 ## 📄 Licença:
 Este projeto está identificado com a licença MIT. Consulte o arquivo LICENSE do repositório para conferir os termos completos de utilização, modificação e distribuição.
 
-<<div align="center">
+<div align="center">
 <img src="images/logo.png" alt="Logo do Empório GE" width="90" />
 
 🐟 Empório GE
