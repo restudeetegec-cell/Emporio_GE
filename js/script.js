@@ -21,19 +21,19 @@
 
     // Catálogo (Adicionei os caminhos dos temperos e botões de carrinho direto)
     const produtos = [
-        { nome: "Atum", preco: 10, unidade: "500g", imagem: "images/atum.jpg", link: "page products/Atum.html" },
+        { nome: "Atum", preco: 22, unidade: "kg", imagem: "images/atum.jpg", link: "page products/Atum.html" },
         { nome: "Corvina", preco: 19, unidade: "kg", imagem: "images/Corvina.webp", link: "page products/Corvina.html" },
         { nome: "Filé Tilápia", preco: 20, unidade: "kg", imagem: "images/fileti.webp", link: "page products/Filé-Tilápia.html" },
         { nome: "Tilápia", preco: 15, unidade: "kg", imagem: "images/tilapia.jpg", link: "page products/tilapia.html" },
         { nome: "Sardinha", preco: 10, unidade: "pacote de 800g", imagem: "images/Sardinha.jpg", link: "page products/Sardinha.html" },
-        { nome: "Camarão", preco: 45, unidade: "kg", imagem: "images/Camarao.jpg", link: "page products/camarao.html" },
+        { nome: "Camarão", preco: 32, unidade: "kg", imagem: "images/Camarao.jpg", link: "page products/camarao.html" },
         { nome: "Ovos", preco: 20, unidade: "dúzia", imagem: "images/Eggs.jpg", link: "page products/ovos.html" },
         { nome: "Chimichurri", preco: 3, unidade: "pacote", imagem: "images/Chimichurri.jpg", link: "page products/Chimichurri.html" },
         { nome: "Páprica", preco: 3, unidade: "pacote", imagem: "images/Páprica.jpg", link: "page products/Paprica.html" },
         { nome: "Colorau", preco: 2, unidade: "pacote", imagem: "images/Colorau.jpg", link: "page products/Colorau.html" },
         { nome: "Lemon Pepper", preco: 4, unidade: "pote", imagem: "images/Lemon-Peper.avif", link: "page products/Lemon.html" },
         { nome: "Açafrão", preco: 3, unidade: "pacote", imagem: "images/acafrao.avif", link: "page products/Acafrao.html" },
-        { nome: "Pasta de Brilho", preco: 6, unidade: "pote", imagem: "images/Pasta-brilho.jpeg", link: "page products/Pasta.html" }
+        { nome: "Pasta de Brilho", preco: 8, unidade: "pote", imagem: "images/Pasta-brilho.jpeg", link: "page products/Pasta.html" }
     ];
 
     const listaProdutos = document.getElementById("listaProdutos");

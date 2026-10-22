@@ -44,15 +44,21 @@ O design foi inspirado em referências de restaurantes premium, adotando um tema
 
 ## ✨ Funcionalidades
 
-- **Página Inicial Dinâmica:** Hero slider, seções de ofertas, catálogo interativo e mapa de localização.
-- **Catálogo Inteligente:** Filtro de busca em tempo real com atualização suave dos produtos.
-- **Páginas Individuais de Produto:** Galeria de imagens (com thumbnails), seletores de corte, quantidade e descrições detalhadas.
-- **Carrinho de Compras Global:**
-  - Persistência de dados via `localStorage` (não perde o pedido ao trocar de página).
-  - Widget flutuante com prévia lateral interativa (*hover*) e contador em tempo real.
-  - Página dedicada para revisão do pedido e cálculo de subtotais.
-- **Checkout via WhatsApp:** O carrinho gera uma mensagem pré-formatada e rica com todos os itens, quantidades, subtotais e o valor total da compra, enviada diretamente para o número da loja.
-- **Design 100% Responsivo:** Layout adaptável para Desktop, Tablet e Mobile, com menu hambúrguer customizado.
+- **🛍️ Navegação e Catálogo:**
+- Página inicial dinâmica: slider de destaque, ofertas e catálogo interativo.
+- Busca de produtos: filtro em tempo real para facilitar a localização dos itens.
+- Páginas individuais: apresentação detalhada dos produtos, com galeria de imagens, miniaturas e informações sobre os cortes disponíveis.
+
+- **🛒 Carrinho de Compras:**
+- Persistência de dados: utilização do localStorage para manter os itens do carrinho durante a navegação entre páginas.
+- Carrinho flutuante: visualização rápida dos itens, com prévia lateral interativa e contador atualizado em tempo real.
+- Revisão do pedido: página dedicada para conferir os produtos, as quantidades, os subtotais e o valor total.
+
+- **📲 Finalização e Responsividade:**
+- Checkout via WhatsApp: geração de uma mensagem organizada com os produtos, as quantidades e os valores do pedido.
+- Layout responsivo: interface adaptável para computadores, tablets e celulares.
+- Menu mobile: navegação com menu hambúrguer personalizado.
+- Acessibilidade: recursos para tornar a navegação mais clara e intuitiva.
 
 ## 🎨 UI/UX e Design System
 
@@ -72,44 +78,52 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
    git clone https://github.com/restudeetegec-cell/Emporio_GE.git
 
 2. **Acesse a pasta do projeto:**
+    ```bash
     cd Emporio_GE
 
 3. **Inicie um servidor local:**
+    ```bash
     python -m http.server 5500
 
 ## 📁 Estrutura de Pastas
 
-📦 Emporio_GE
- ┣ 📂 images/            # Assets visuais (fotos dos produtos, logo, backgrounds)
- ┣ 📂 js/                # Lógica JavaScript
- ┃ ┣ 📜 carrinho.js      # Gerenciamento global do carrinho (localStorage)
- ┃ ┣ 📜 header.js        # Lógica do menu mobile e acessibilidade
- ┃ ┣ 📜 hero.js          # Slider automático da página inicial
- ┃ ┣ 📜 product.js       # Lógica das páginas de produto (galeria e adicionar ao carrinho)
- ┃ ┗ 📜 script.js        # Geração do catálogo, busca e carrossel de ofertas
- ┣ 📂 page products/     # Páginas HTML individuais de cada produto
- ┣ 📂 style/             # Estilização
- ┃ ┣ 📜 main.css         # Estilos globais, variáveis e catálogo
- ┃ ┣ 📜 header.css       # Estilos da navegação (navbar flutuante)
- ┃ ┣ 📜 cart.css         # Estilos do carrinho e prévia lateral
- ┃ ┗ 📜 productStyle.css # Estilos das páginas de produto
- ┣ 📜 index.html         # Página principal
- ┣ 📜 carrinho.html      # Página de finalização do carrinho
- ┗ 📜 README.md
+A estrutura principal do projeto está organizada da seguinte forma:
+
+Emporio_GE/
+├── images/                  # Imagens dos produtos, logo e backgrounds
+├── js/                      # Scripts e funcionalidades JavaScript
+│   ├── carrinho.js          # Gerenciamento do carrinho e localStorage
+│   ├── header.js            # Menu mobile e recursos de acessibilidade
+│   ├── hero.js              # Slider automático da página inicial
+│   ├── product.js           # Galeria de produtos e ações do carrinho
+│   └── script.js            # Catálogo, busca e carrossel de ofertas
+├── page products/           # Páginas HTML individuais dos produtos
+├── style/                   # Arquivos de estilização CSS
+│   ├── main.css             # Estilos globais, variáveis e catálogo
+│   ├── header.css           # Estilos da navegação
+│   ├── cart.css             # Carrinho e prévia lateral
+│   └── productStyle.css     # Estilos das páginas de produto
+├── index.html               # Página inicial
+├── carrinho.html            # Página do carrinho e finalização do pedido
+└── README.md                # Documentação do projeto
 
  ## 🗺️ Roadmap (Próximos Passos)
 
- O front-end está 100% concluído, mas o projeto está preparado para evoluir:
+O front-end já conta com as principais funcionalidades de navegação, catálogo e carrinho. As próximas etapas estão voltadas à expansão e à administração da plataforma.
 
- ☑ Interface responsiva e acessível
- ☑ Carrinho de compras local com persistência
- ☑ Checkout integrado ao WhatsApp
- □ Integração com Backend (Node.js / Python / Firebase) para salvar histórico de pedidos.
- □ Painel Administrativo para gerenciar o catálogo e as ofertas.
+- **✅ Funcionalidades Concluídas**
+
+- ▣ Interface responsiva para diferentes dispositivos.
+- ▣ Estrutura de navegação com recursos de acessibilidade.
+- ▣ Catálogo interativo com busca de produtos.
+- ▣ Páginas individuais com galeria de imagens.
+- ▣ Carrinho de compras com persistência via localStorage.
+- ▣ Prévia lateral e contador de itens do carrinho.
+- ▣ Checkout com geração do pedido para envio pelo WhatsApp.
 
  ## 🤝 Agradecimentos e Créditos
 
-· @restudeetegec-cell — Idealizador do projeto
+· Maick Ferreira (@restudeetegec-cell) — Idealizador do projeto
 
 · Victor Baracho (vt-baracho)
 
@@ -119,7 +133,23 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
  
 · Guilherme Pessoa (Santos-DevLab)
 
-· Referências Visuais — Inspirado no design premium e minimalista de sites como Rumorosa, Slate  
-Cafe, Via Quadronno e ONIBUS COFFEE.
+## 🎨 Referências Visuais:
 
-<div align="center"> <p>Feito com 🐟 e muito código para o <strong>Empório GE</strong>.</p> <p>&copy; 2026 Empório GE. Todos os direitos reservados.</p> </div> ```
+A identidade visual foi inspirada em interfaces de estabelecimentos que valorizam o minimalismo, a sofisticação e a apresentação dos produtos, como Rumorosa, Slate Cafe, Via Quadronno e ONIBUS COFFEE.
+
+## 📄 Licença:
+Este projeto está identificado com a licença MIT. Consulte o arquivo LICENSE do repositório para conferir os termos completos de utilização, modificação e distribuição.
+
+<<div align="center">
+<img src="images/logo.png" alt="Logo do Empório GE" width="90" />
+
+🐟 Empório GE
+Qualidade, frescor e praticidade em cada pedido.
+
+Desenvolvido com dedicação, atenção aos detalhes e paixão pela tecnologia.
+
+Transformando a experiência de comprar pescados em algo simples, moderno e acessível.
+
+© 2026 Empório GE · Todos os direitos reservados.
+
+</div>
