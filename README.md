@@ -110,8 +110,6 @@ Emporio_GE/
 └── README.md                 # Documentação do projeto
 ```
 
-### 🗺️ Roteiro (Próximos Passos)
-
  # 🗺️ Roadmap (Próximos Passos)
 
 O front-end já conta com as principais funcionalidades de navegação, catálogo e carrinho. As próximas etapas estão voltadas à expansão e à administração da plataforma.
