@@ -85,7 +85,7 @@ O projeto é construído apenas com tecnologias front-end nativas, sem a necessi
     ```bash
     python -m http.server 5500
 
-# ## 📁 Estrutura de Pastas
+## 📁 Estrutura de Pastas
 
 A estrutura principal do projeto está organizada da seguinte forma:
 
