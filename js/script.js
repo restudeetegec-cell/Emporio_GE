@@ -28,7 +28,7 @@
         { nome: "Sardinha", preco: 10, unidade: "pacote de 800g", imagem: "images/Sardinha.jpg", link: "page products/Sardinha.html" },
         { nome: "Camarão", preco: 32, unidade: "kg", imagem: "images/Camarao.jpg", link: "page products/camarao.html" },
         { nome: "Ovos", preco: 20, unidade: "dúzia", imagem: "images/Eggs.jpg", link: "page products/ovos.html" },
-        { nome: "Chimichurri", preco: 3, unidade: "pacote", imagem: "images/Chimichurri.jpg", link: "page products/Chimichurri.html" },
+        { nome: "Chimichurri", preco: 3, unidade: "pacote", imagem: "images/Chimichurri.jpg", link: "page products/chimichurri.html" },
         { nome: "Páprica", preco: 3, unidade: "pacote", imagem: "images/Páprica.jpg", link: "page products/Paprica.html" },
         { nome: "Colorau", preco: 2, unidade: "pacote", imagem: "images/Colorau.jpg", link: "page products/Colorau.html" },
         { nome: "Lemon Pepper", preco: 4, unidade: "pote", imagem: "images/Lemon-Peper.avif", link: "page products/Lemon.html" },

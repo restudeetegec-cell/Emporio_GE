@@ -14,16 +14,19 @@
     const cartPageUrl = `${basePath}carrinho/carrinho.html`;
     const catalogUrl = `${basePath}index.html#catalogo`;
 
-    const storageKey = "emporioGE_cart"
+    const storageKey = "emporioGE_cart";
 
 
     function loadCart() {
         try {
             const saved = JSON.parse(window.localStorage.getItem(storageKey) || "[]");
             if (!Array.isArray(saved)) return [];
-            return saved.filter(item => item && typeof item.nome === "string").map(item => ({
-                nome: item.nome,
-                preco: Number(item.preco) || 0,
+            return saved.filter(item =>
+                item && typeof item.nome === "string" && item.nome.trim() &&
+                Number.isFinite(Number(item.preco)) && Number(item.preco) > 0
+            ).map(item => ({
+                nome: item.nome.trim(),
+                preco: Number(item.preco),
                 corte: String(item.corte || "Padrão"),
                 unidade: String(item.unidade || "unidade"),
                 quantidade: Math.max(1, Number.parseInt(item.quantidade, 10) || 1),
@@ -90,15 +93,20 @@
         cart.slice(0, 3).forEach((item) => {
             const row = document.createElement("div");
             row.className = "cart-drawer__item";
-            row.innerHTML = `
-                <span class="cart-drawer__item-name">${item.quantidade} × ${item.nome}</span>
-                <strong>${formatBRL(item.preco * item.quantidade)}</strong>
-            `;
+            const name = document.createElement("span");
+            name.className = "cart-drawer__item-name";
+            name.textContent = `${item.quantidade} × ${item.nome}`;
+            const price = document.createElement("strong");
+            price.textContent = formatBRL(item.preco * item.quantidade);
+            row.append(name, price);
             previewItemsEl.appendChild(row);
         });
 
         if (cart.length > 3) {
-            previewItemsEl.innerHTML += `<p class="cart-drawer__more">E mais ${cart.length - 3} produto(s).</p>`;
+            const more = document.createElement("p");
+            more.className = "cart-drawer__more";
+            more.textContent = `E mais ${cart.length - 3} produto(s).`;
+            previewItemsEl.appendChild(more);
         }
     }
 
@@ -123,21 +131,36 @@
             const row = document.createElement("article");
             row.className = "cart-item";
 
-            const imgHtml = item.imagem ? `<img src="${item.imagem}" class="cart-item__img" alt="${item.nome}" loading="lazy">` : `<div class="cart-item__img"></div>`;
-            
+            const image = document.createElement(item.imagem ? "img" : "div");
+            image.className = "cart-item__img";
+            if (item.imagem) {
+                image.src = item.imagem;
+                image.alt = item.nome;
+                image.loading = "lazy";
+            }
+
             const option = item.corte && !["Padrão", "Oferta"].includes(item.corte) ? ` • ${item.corte}` : item.corte === "Oferta" ? " • Oferta" : "";
 
-            row.innerHTML = `
-                ${imgHtml}
-                <div class="cart-item__info">
-                    <h4>${item.nome}</h4>
-                    <span>${item.quantidade} × ${item.unidade}${option}</span>
-                </div>
-                <div class="cart-item__price">${formatBRL(item.preco * item.quantidade)}</div>
-                <button class="cart-item__remove" onclick="removeFromCart(${index})" aria-label="Remover">
-                    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-                </button>
-            `;
+            const info = document.createElement("div");
+            info.className = "cart-item__info";
+            const name = document.createElement("h4");
+            name.textContent = item.nome;
+            const details = document.createElement("span");
+            details.textContent = `${item.quantidade} × ${item.unidade}${option}`;
+            info.append(name, details);
+
+            const price = document.createElement("div");
+            price.className = "cart-item__price";
+            price.textContent = formatBRL(item.preco * item.quantidade);
+
+            const removeButton = document.createElement("button");
+            removeButton.className = "cart-item__remove";
+            removeButton.type = "button";
+            removeButton.setAttribute("aria-label", "Remover");
+            removeButton.innerHTML = '<i class="fa-solid fa-trash" aria-hidden="true"></i>';
+            removeButton.addEventListener("click", () => window.removeFromCart(index));
+
+            row.append(image, info, price, removeButton);
             container.appendChild(row);
         });
 
@@ -147,7 +170,8 @@
     function refresh() { renderWidget(); renderCartPage(); }
 
     window.addToCart = function (product) {
-        if (!product || !product.nome) return false;
+        if (!product || typeof product.nome !== "string" || !product.nome.trim() ||
+            !Number.isFinite(Number(product.preco)) || Number(product.preco) <= 0) return false;
 
         const item = {
             nome: product.nome.trim(),
@@ -245,7 +269,7 @@ document.querySelectorAll("[data-add-offer]").forEach((button) => {
             });
             msg += `*TOTAL DO PEDIDO: ${formatBRL(totalPrice())}*`;
             
-            window.open(`https://wa.me/5581986836253?text=${encodeURIComponent(msg)}`, "_blank");
+            window.open(`https://wa.me/5581986836253?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
         });
     }
 
