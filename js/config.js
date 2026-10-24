@@ -1,2 +1,1 @@
-// Change this URL when the storefront uses a deployed API.
-window.EMPORIO_API_BASE_URL ||= "http://127.0.0.1:8000/v1";
+window.EMPORIO_API_BASE_URL ||= "https://man-eta-seven.vercel.app";
