@@ -1,1 +1,1 @@
-window.EMPORIO_API_BASE_URL ||= "https://man-eta-seven.vercel.app";
+window.EMPORIO_API_BASE_URL ||= "https://man-eta-seven.vercel.app/v1";
