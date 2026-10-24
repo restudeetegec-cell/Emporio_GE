@@ -61,104 +61,14 @@
         </div>
     </section>
 
-    <!-- OFERTAS CORRIGIDAS -->
     <section id="ofertas" class="offers">
         <header class="offers__header">
-            <h2 class="offers__title">Ofertas da Semana</h2>
+            <h2 class="offers__title">Ofertas</h2>
             <p class="offers__subtitle">Preços especiais por tempo limitado</p>
         </header>
     
-        <div class="carrossel">
-            <article class="oferta">
-                <div class="oferta__imagem">
-                    <img src="images/tilapia.jpg" alt="Tilápia" loading="lazy">
-                    <span class="oferta__badge">-15%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Tilápia</h3>
-                    <p class="oferta__preco">R$ 12,75 <span>/ kg</span></p>
-                    <a href="page products/tilapia.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-    
-            <article class="oferta">
-                <div class="oferta__imagem">
-                    <img src="images/Sardinha.jpg" alt="Sardinha" loading="lazy">
-                    <span class="oferta__badge">-20%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Sardinha</h3>
-                    <p class="oferta__preco">R$ 8,00 <span>/ 800g</span></p>
-                    <a href="page products/Sardinha.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-    
-            <article class="oferta">
-                <div class="oferta__imagem">
-                    <img src="images/fileti.webp" alt="Filé Tilápia" loading="lazy">
-                    <span class="oferta__badge">-10%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Filé Tilápia</h3>
-                    <p class="oferta__preco">R$ 18,00 <span>/ kg</span></p>
-                    <a href="page products/Filé-Tilápia.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-    
-            <article class="oferta">
-                <div class="oferta__imagem">
-                    <img src="images/atum.jpg" alt="Atum" loading="lazy">
-                    <span class="oferta__badge">-10%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Atum</h3>
-                    <p class="oferta__preco">R$ 19,80 <span>/ kg</span></p>
-                    <a href="page products/Atum.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-    
-            <article class="oferta">
-                <div class="oferta__imagem">
-                    <img src="images/Corvina.webp" alt="Corvina" loading="lazy">
-                    <span class="oferta__badge">-10%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Corvina</h3>
-                    <p class="oferta__preco">R$ 17,10 <span>/ kg</span></p>
-                    <a href="page products/Corvina.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-
-            <article class="oferta">
-                <div class="oferta__imagem oferta__imagem--placeholder">
-                    <img src="images/Camarao.jpg" alt="Camarão" loading="lazy">
-                    <span class="oferta__badge">-10%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Camarão</h3>
-                    <p class="oferta__preco">R$ 28,80 <span>/ kg</span></p>
-                    <a href="page products/camarao.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
-
-            <article class="oferta">
-                <div class="oferta__imagem oferta__imagem--placeholder">
-                    <img src="images/Eggs.jpg" alt="Ovos" loading="lazy">
-                    <span class="oferta__badge">-10%</span>
-                </div>
-                <div class="oferta__info">
-                    <h3 class="oferta__nome">Ovos</h3>
-                    <p class="oferta__preco">R$ 18,00 <span>/ dúzia</span></p>
-                    <a href="page products/ovos.html" class="oferta__botao">Ver oferta <i class="fa-solid fa-arrow-right"></i></a>
-                    <button type="button" class="oferta__botao oferta__botao--cart" data-add-offer>Adicionar ao carrinho <i class="fa-solid fa-cart-shopping"></i></button>
-                </div>
-            </article>
+        <div class="carrossel" id="offerList" aria-live="polite">
+            <p class="catalog-status">Carregando ofertas...</p>
         </div>
     </section>
 
@@ -168,7 +78,7 @@
             <h2>Catálogo</h2>
             <button id="abrirPesquisa" type="button" aria-label="Pesquisar produtos"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-        <div class="produtos" id="listaProdutos"></div>
+        <div class="produtos" id="listaProdutos" aria-live="polite"><p class="catalog-status">Carregando produtos...</p></div>
     </section>
 
     <!-- PESQUISA -->
@@ -195,6 +105,8 @@
     </div>
 </footer>
 
+<script src="js/config.js"></script>
+<script src="js/api.js"></script>
 <script src="js/script.js"></script>
 <script src="js/hero.js"></script>
 <script src="js/header.js"></script>

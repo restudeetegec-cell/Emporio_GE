@@ -1,212 +1,135 @@
-
-(function () {
+(() => {
     "use strict";
 
-    const mainImage = document.getElementById("mainImage");
-    const thumbs = document.querySelectorAll(".product-gallery__thumb");
-    const qtyInput = document.getElementById("quantity");
+    const api = window.EmporioAPI;
+    const status = document.getElementById("productStatus");
+    const content = document.getElementById("productContent");
     const form = document.getElementById("productForm");
-
+    const quantityInput = document.getElementById("quantity");
+    const mainImage = document.getElementById("mainImage");
+    const thumbs = document.getElementById("galleryThumbs");
     const whatsappNumber = "5581986836253";
+    let product = null;
+    let currentPrice = null;
 
-    // ============================================================
-    // 1. TROCA DA IMAGEM PRINCIPAL
-    // ============================================================
-
-    thumbs.forEach((thumb) => {
-        thumb.addEventListener("click", () => {
-            const newSrc = thumb.dataset.image;
-
-            if (!newSrc || !mainImage) return;
-
-            mainImage.style.opacity = "0";
-
-            window.setTimeout(() => {
-                mainImage.src = newSrc;
-                mainImage.style.opacity = "1";
-            }, 150);
-
-            thumbs.forEach((item) => {
-                item.classList.remove("is-active");
-            });
-
-            thumb.classList.add("is-active");
-        });
-    });
-
-    // ============================================================
-    // 2. CONTROLES DE QUANTIDADE (+ E -)
-    // ============================================================
-
-    if (qtyInput) {
-        document.querySelectorAll(".product-form__qty-btn")
-            .forEach((button) => {
-                button.addEventListener("click", () => {
-                    const min = Number(qtyInput.min) || 1;
-                    const max = Number(qtyInput.max) || 99;
-                    const current = Number(qtyInput.value) || min;
-
-                    if (button.dataset.action === "minus") {
-                        qtyInput.value = String(
-                            Math.max(min, current - 1)
-                        );
-                    }
-
-                    if (button.dataset.action === "plus") {
-                        qtyInput.value = String(
-                            Math.min(max, current + 1)
-                        );
-                    }
-                });
-            });
+    function showError(message, error) {
+        status.hidden = false;
+        status.textContent = message;
+        content.hidden = true;
+        if (error) console.error(error);
     }
 
-    // Se a página não tiver formulário de produto, encerra.
-    if (!form) return;
-
-    // ============================================================
-    // 3. FORMATAÇÃO DE PREÇOS
-    // ============================================================
-
-    const formatBRL = (value) => {
-        return Number(value).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        });
-    };
-
-    // ============================================================
-    // 4. IDENTIFICAÇÃO DA AÇÃO DO BOTÃO
-    // ============================================================
-
-    function getButtonAction(button) {
-        if (!button) {
-            return "cart";
-        }
-
-        // Primeiro, verifica o atributo data-action.
-        const declaredAction = button.dataset.action;
-
-        if (
-            declaredAction === "whatsapp" ||
-            declaredAction === "cart"
-        ) {
-            return declaredAction;
-        }
-
-        // Alternativa para páginas em que o atributo ainda
-        // não tenha sido adicionado ao botão.
-        const buttonText = (
-            button.textContent + " " +
-            (button.querySelector("i")?.className || "")
-        ).toLocaleLowerCase("pt-BR");
-
-        if (
-            buttonText.includes("whatsapp") ||
-            buttonText.includes("encomendar")
-        ) {
-            return "whatsapp";
-        }
-
-        if (
-            buttonText.includes("carrinho") ||
-            buttonText.includes("cart-shopping")
-        ) {
-            return "cart";
-        }
-
-        return null;
-    }
-
-    // ============================================================
-    // 5. COLETA DOS DADOS DO PRODUTO
-    // ============================================================
-
-    function getOrderData() {
-        const nameElement =
-            document.getElementById("productName");
-
-        const priceElement =
-            document.getElementById("productPrice");
-
-        const optionElement =
-            document.getElementById("cutType");
-
-        const quantityLabel =
-            form.querySelector('label[for="quantity"]');
-
-        const quantity = Math.max(
-            1,
-            Number.parseInt(qtyInput?.value, 10) || 1
-        );
-
-        // O valor de data-price deve ser sempre o preço que
-        // será cobrado: o preço promocional, quando houver.
-        const price = Number(priceElement?.dataset.price);
-
-        // Obtém a unidade do preço, por exemplo "/ kg",
-        // "/ 500g" ou "/ dúzia".
-        const priceUnitElement = priceElement?.querySelector(
-            ".product-info__price-unit"
-        );
-
-        const priceUnit = priceUnitElement
-            ? priceUnitElement.textContent
-                .replace(/^\s*\/\s*/, "")
-                .trim()
-            : "";
-
-        // Para páginas sem o novo elemento de unidade,
-        // tenta usar o texto do rótulo da quantidade.
-        const unitMatch = quantityLabel?.textContent.match(
-            /\((.*?)\)/
-        );
-
-        const unit = priceUnit ||
-            (unitMatch ? unitMatch[1].trim() : "unidade");
-
-        return {
-            nome: nameElement?.textContent.trim() || "Produto",
-            preco: Number.isFinite(price) && price > 0
-                ? price
-                : null,
-            corte: optionElement?.value || "Padrão",
-            quantidade: quantity,
-            unidade: unit,
-            imagem: mainImage?.src || ""
-        };
-    }
-
-    // ============================================================
-    // 6. ENVIO DO FORMULÁRIO
-    // ============================================================
-
-    form.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const order = getOrderData();
-        const action = getButtonAction(event.submitter);
-
-        // Não permite enviar ou adicionar um produto sem
-        // um preço válido configurado no HTML.
-        if (
-            !Number.isFinite(order.preco) ||
-            order.preco <= 0
-        ) {
-            alert(
-                "O preço deste produto não está configurado " +
-                "corretamente. Confira o preço na página do produto."
-            );
-
+    function renderGallery(item) {
+        const paths = [...new Set([item.thumb_url, ...(item.gallery_urls || [])].filter(Boolean))];
+        thumbs.replaceChildren();
+        if (!paths.length) {
+            mainImage.removeAttribute("src");
+            mainImage.alt = "Imagem indisponível";
             return;
         }
 
-        // ========================================================
-        // 6.1. ENCOMENDAR SOMENTE O PRODUTO ATUAL NO WHATSAPP
-        // ========================================================
+        mainImage.src = api.assetUrl(paths[0]);
+        mainImage.alt = item.name;
+        paths.forEach((path, index) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = `product-gallery__thumb${index === 0 ? " is-active" : ""}`;
+            button.setAttribute("aria-label", `Ver imagem ${index + 1} de ${item.name}`);
+            const image = document.createElement("img");
+            image.src = api.assetUrl(path);
+            image.alt = `${item.name}, imagem ${index + 1}`;
+            button.appendChild(image);
+            button.addEventListener("click", () => {
+                mainImage.src = image.src;
+                thumbs.querySelectorAll(".product-gallery__thumb").forEach(thumb => thumb.classList.remove("is-active"));
+                button.classList.add("is-active");
+            });
+            thumbs.appendChild(button);
+        });
+    }
 
-        if (action === "whatsapp") {
-            const subtotal = order.preco * order.quantidade;
+    function renderProduct(item, offer) {
+        product = item;
+        currentPrice = offer && offer.promo_price < item.price ? offer.promo_price : item.price;
+        document.title = `${item.name} — Empório GE`;
+        document.getElementById("breadcrumbName").textContent = item.name;
+        document.getElementById("productCategory").textContent = item.category;
+        document.getElementById("productName").textContent = item.name;
+        document.getElementById("productDescription").textContent = item.description;
+        document.getElementById("currentPrice").textContent = api.formatBRL(currentPrice);
+        document.getElementById("priceUnit").textContent = `/ ${item.unit}`;
+        document.getElementById("quantityLabel").textContent = `Quantidade (${item.unit})`;
+
+        const priceElement = document.getElementById("productPrice");
+        const original = document.getElementById("originalPrice");
+        if (currentPrice < item.price) {
+            priceElement.classList.add("product-info__price--offer");
+            original.textContent = api.formatBRL(item.price);
+            original.hidden = false;
+        } else {
+            priceElement.classList.remove("product-info__price--offer");
+            original.hidden = true;
+        }
+
+        const select = document.getElementById("cutType");
+        select.replaceChildren(...(item.options || []).map(value => {
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = value;
+            return option;
+        }));
+        document.getElementById("optionField").hidden = !item.options?.length;
+        document.getElementById("optionLabel").textContent = item.category === "Pescado Fresco" ? "Corte" : "Opção";
+        renderGallery(item);
+        status.hidden = true;
+        content.hidden = false;
+    }
+
+    document.querySelectorAll(".product-form__qty-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const value = Number(quantityInput.value) || 1;
+            const change = button.dataset.action === "plus" ? 1 : -1;
+            quantityInput.value = String(Math.min(20, Math.max(1, value + change)));
+        });
+    });
+
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+        if (!product || !Number.isFinite(currentPrice) || currentPrice <= 0) return;
+        const quantity = Number.parseInt(quantityInput.value, 10);
+        if (!Number.isInteger(quantity) || quantity < 1 || quantity > 20) return;
+        const option = document.getElementById("cutType").value || "Padrão";
+        const order = {
+            id: product.id,
+            nome: product.name,
+            preco: currentPrice / 100,
+            corte: option,
+            quantidade: quantity,
+            unidade: product.unit,
+            imagem: mainImage.src || ""
+        };
+
+        if (event.submitter?.dataset.action === "whatsapp") {
+            try {
+                const [freshProduct, offers] = await Promise.all([
+                    api.getProduct(product.id), api.listOffers()
+                ]);
+                const offer = api.activeOffers(offers).get(freshProduct.id);
+                const freshPrice = offer && offer.promo_price < freshProduct.price
+                    ? offer.promo_price : freshProduct.price;
+                if (freshPrice !== currentPrice || freshProduct.name !== product.name ||
+                    freshProduct.unit !== product.unit) {
+                    renderProduct(freshProduct, offer);
+                    status.textContent = "Os dados do produto mudaram. Revise o preço e clique novamente para encomendar.";
+                    status.hidden = false;
+                    return;
+                }
+            } catch (error) {
+                status.textContent = "Não foi possível confirmar o preço. Tente novamente.";
+                status.hidden = false;
+                console.error(error);
+                return;
+            }
 
             const message = [
                 "Olá, Empório GE! Gostaria de fazer uma encomenda:",
@@ -214,68 +137,49 @@
                 `Produto: ${order.nome}`,
                 `Opção: ${order.corte}`,
                 `Quantidade: ${order.quantidade} (${order.unidade})`,
-                `Preço unitário: ${formatBRL(order.preco)}`,
-                `Subtotal: ${formatBRL(subtotal)}`,
+                `Preço unitário: ${api.formatBRL(currentPrice)}`,
+                `Subtotal: ${api.formatBRL(currentPrice * quantity)}`,
                 "",
                 "Poderiam confirmar a disponibilidade?"
             ].join("\n");
-
-            window.open(
-                `https://wa.me/${whatsappNumber}?text=${
-                    encodeURIComponent(message)
-                }`,
-                "_blank",
-                "noopener,noreferrer"
-            );
-
+            window.location.assign(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`);
             return;
         }
 
-        // ========================================================
-        // 6.2. ADICIONAR O PRODUTO AO CARRINHO
-        // ========================================================
-
-        if (action === "cart") {
-            if (typeof window.addToCart !== "function") {
-                alert(
-                    "O carrinho não carregou. " +
-                    "Atualize a página e tente novamente."
-                );
-
+        if (event.submitter?.dataset.action === "cart") {
+            if (typeof window.addToCart !== "function" || !window.addToCart(order)) {
+                alert("Não foi possível adicionar o produto ao carrinho.");
                 return;
             }
-
-            const added = window.addToCart(order);
-
-            if (!added) {
-                alert(
-                    "Não foi possível adicionar o produto ao carrinho."
-                );
-
-                return;
-            }
-
-            // Feedback visual para confirmar a adição.
             const button = event.submitter;
+            button.disabled = true;
+            window.setTimeout(() => { button.disabled = false; }, 1000);
+        }
+    });
 
-            if (button) {
-                const originalText = button.innerHTML;
-
-                button.innerHTML =
-                    '<i class="fa-solid fa-check"></i> Adicionado!';
-
-                window.setTimeout(() => {
-                    button.innerHTML = originalText;
-                }, 1500);
-            }
-
+    async function loadProduct() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const legacyName = params.get("name");
+        if (!id && !legacyName) {
+            showError("Produto não informado. Volte ao catálogo e escolha um produto.");
             return;
         }
 
-        // Se o botão não tiver uma ação reconhecida, avisa.
-        alert(
-            "Não foi possível identificar a ação do botão. " +
-            "Confira os atributos data-action no HTML."
-        );
-    });
+        try {
+            const [item, offers] = await Promise.all([
+                id ? api.getProduct(id) : api.listProducts().then(items => items.find(product => product.name === legacyName)),
+                api.listOffers()
+            ]);
+            if (!item) {
+                showError("Produto não encontrado.");
+                return;
+            }
+            renderProduct(item, api.activeOffers(offers).get(item.id));
+        } catch (error) {
+            showError("Não foi possível carregar o produto. Atualize a página para tentar novamente.", error);
+        }
+    }
+
+    loadProduct();
 })();

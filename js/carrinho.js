@@ -1,9 +1,7 @@
 (function () {
     "use strict";
 
-    // Verifica se estamos na pasta "page products" para voltar um nível.
-    // Se for a página do carrinho, ela também está na raiz, então não volta.
-    
+    // Links relativos partem da raiz ou de uma página em subdiretório.
     const currentPath = decodeURIComponent(window.location.pathname);
 
     const isProductPage = currentPath.includes("/page products/");
@@ -25,12 +23,14 @@
                 item && typeof item.nome === "string" && item.nome.trim() &&
                 Number.isFinite(Number(item.preco)) && Number(item.preco) > 0
             ).map(item => ({
+                id: typeof item.id === "string" ? item.id : "",
                 nome: item.nome.trim(),
                 preco: Number(item.preco),
                 corte: String(item.corte || "Padrão"),
                 unidade: String(item.unidade || "unidade"),
                 quantidade: Math.max(1, Number.parseInt(item.quantidade, 10) || 1),
-                imagem: typeof item.imagem === "string" ? item.imagem : ""
+                imagem: typeof item.imagem === "string" ? item.imagem : "",
+                unavailable: item.unavailable === true
             }));
         } catch (error) {
             return [];
@@ -41,7 +41,7 @@
 
     const formatBRL = (value) => Number(value || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     const totalItems = () => cart.reduce((sum, item) => sum + item.quantidade, 0);
-    const totalPrice = () => cart.reduce((sum, item) => sum + item.preco * item.quantidade, 0);
+    const totalPrice = () => cart.reduce((sum, item) => sum + (item.unavailable ? 0 : item.preco * item.quantidade), 0);
 
     // Cria o Widget (Botão + Gaveta de prévia)
     const widget = document.createElement("div");
@@ -97,7 +97,7 @@
             name.className = "cart-drawer__item-name";
             name.textContent = `${item.quantidade} × ${item.nome}`;
             const price = document.createElement("strong");
-            price.textContent = formatBRL(item.preco * item.quantidade);
+            price.textContent = item.unavailable ? "Indisponível" : formatBRL(item.preco * item.quantidade);
             row.append(name, price);
             previewItemsEl.appendChild(row);
         });
@@ -115,6 +115,7 @@
         if (!container) return;
 
         const totalElement = document.getElementById("cartTotalPrice");
+        const checkout = document.getElementById("checkoutBtn");
         container.replaceChildren();
 
         if (cart.length === 0) {
@@ -124,6 +125,7 @@
                     <a href="${catalogUrl}" style="color:goldenrod; text-decoration:none;">Ver produtos</a>
                 </div>`;
             if (totalElement) totalElement.textContent = formatBRL(0);
+            if (checkout) checkout.disabled = true;
             return;
         }
 
@@ -151,7 +153,7 @@
 
             const price = document.createElement("div");
             price.className = "cart-item__price";
-            price.textContent = formatBRL(item.preco * item.quantidade);
+            price.textContent = item.unavailable ? "Indisponível" : formatBRL(item.preco * item.quantidade);
 
             const removeButton = document.createElement("button");
             removeButton.className = "cart-item__remove";
@@ -165,6 +167,7 @@
         });
 
         if (totalElement) totalElement.textContent = formatBRL(totalPrice());
+        if (checkout) checkout.disabled = cart.length === 0 || cart.some(item => item.unavailable);
     }
 
     function refresh() { renderWidget(); renderCartPage(); }
@@ -174,93 +177,113 @@
             !Number.isFinite(Number(product.preco)) || Number(product.preco) <= 0) return false;
 
         const item = {
+            id: typeof product.id === "string" ? product.id : "",
             nome: product.nome.trim(),
             preco: Number(product.preco),
             corte: String(product.corte || "Padrão"),
             unidade: String(product.unidade || "unidade"),
             quantidade: Math.max(1, Number.parseInt(product.quantidade, 10) || 1),
-            imagem: typeof product.imagem === "string" ? product.imagem : ""
+            imagem: typeof product.imagem === "string" ? product.imagem : "",
+            unavailable: false
         };
 
         const existing = cart.find(saved => 
-            saved.nome === item.nome && saved.corte === item.corte && saved.unidade === item.unidade
+            (saved.id && item.id ? saved.id === item.id : saved.nome === item.nome) &&
+            saved.corte === item.corte && saved.unidade === item.unidade
         );
 
-        if (existing) existing.quantidade += item.quantidade;
+        if (existing) {
+            existing.quantidade += item.quantidade;
+            existing.id = item.id || existing.id;
+            existing.preco = item.preco;
+            existing.imagem = item.imagem;
+            existing.unavailable = false;
+        }
         else cart.push(item);
 
         saveCart();
         refresh();
         return true;
     };
-// Adiciona as ofertas da página inicial ao carrinho.
-document.querySelectorAll("[data-add-offer]").forEach((button) => {
-    button.addEventListener("click", () => {
-        const card = button.closest(".oferta");
-        if (!card) return;
-
-        const nameElement = card.querySelector(".oferta__nome");
-        const priceElement = card.querySelector(".oferta__preco");
-        const imageElement = card.querySelector(".oferta__imagem img");
-
-        if (!nameElement || !priceElement) return;
-
-        // Converte, por exemplo, "R$ 22,00" para 22.00.
-        const priceMatch = priceElement.textContent.match(
-            /R\$\s*([\d.]+,\d{2})/
-        );
-
-        if (!priceMatch) {
-            alert("Não foi possível identificar o preço da oferta.");
-            return;
-        }
-
-        const price = Number(
-            priceMatch[1].replace(/\./g, "").replace(",", ".")
-        );
-
-        const unitElement = priceElement.querySelector("span");
-        const unit = unitElement
-            ? unitElement.textContent.replace("/", "").trim()
-            : "unidade";
-
-        const added = window.addToCart({
-            nome: nameElement.textContent.trim(),
-            preco: price,
-            corte: "Oferta",
-            unidade: unit,
-            quantidade: 1,
-            imagem: imageElement ? imageElement.src : ""
-        });
-
-        if (added) {
-            const originalText = button.innerHTML;
-            button.innerHTML =
-                'Adicionado! <i class="fa-solid fa-check"></i>';
-
-            button.disabled = true;
-
-            window.setTimeout(() => {
-                button.innerHTML = originalText;
-                button.disabled = false;
-            }, 1200);
-        }
-    });
-});
-
     window.removeFromCart = function (index) {
         if (index >= 0 && index < cart.length) {
             cart.splice(index, 1);
             saveCart();
             refresh();
+            if (cartStatus && !cart.some(item => item.unavailable)) cartStatus.textContent = "";
         }
     };
 
     const checkoutButton = document.getElementById("checkoutBtn");
+    const cartStatus = document.getElementById("cartStatus");
+
+    async function syncCartWithAPI() {
+        if (!cart.length) return { available: true, changed: false };
+        const api = window.EmporioAPI;
+        if (!api) throw new Error("API não configurada.");
+
+        const [products, offers] = await Promise.all([api.listProducts(), api.listOffers()]);
+        const byId = new Map(products.map(product => [product.id, product]));
+        const byName = new Map(products.map(product => [product.name, product]));
+        const activeOffers = api.activeOffers(offers);
+        let changed = false;
+        let unavailable = false;
+
+        cart = cart.map(item => {
+            const product = byId.get(item.id) || byName.get(item.nome);
+            if (!product || !Number.isFinite(product.price) || product.price <= 0) {
+                unavailable = true;
+                return { ...item, unavailable: true };
+            }
+            const offer = activeOffers.get(product.id);
+            const priceCents = offer && offer.promo_price < product.price ? offer.promo_price : product.price;
+            const price = priceCents / 100;
+            if (item.preco !== price) changed = true;
+            return {
+                ...item,
+                id: product.id,
+                nome: product.name,
+                preco: price,
+                corte: item.corte === "Oferta" ? "Padrão" : item.corte,
+                unidade: product.unit,
+                imagem: api.assetUrl(product.thumb_url),
+                unavailable: false
+            };
+        });
+        saveCart();
+        refresh();
+        if (cartStatus) {
+            cartStatus.textContent = unavailable
+                ? "Remova os produtos indisponíveis para finalizar o pedido."
+                : changed ? "Os preços foram atualizados conforme o catálogo atual." : "";
+        }
+        return { available: !unavailable, changed };
+    }
+
     if (checkoutButton) {
-        checkoutButton.addEventListener("click", () => {
+        syncCartWithAPI().catch(error => {
+            if (cartStatus) cartStatus.textContent = "Não foi possível confirmar os preços. Tente novamente antes de finalizar.";
+            console.error(error);
+        });
+        checkoutButton.addEventListener("click", async () => {
             if (cart.length === 0) return alert("Carrinho vazio!");
-            
+            checkoutButton.disabled = true;
+            try {
+                const result = await syncCartWithAPI();
+                if (!result.available) return;
+                if (!cart.length) return alert("Carrinho vazio!");
+                if (result.changed) {
+                    if (cartStatus) cartStatus.textContent = "Os preços mudaram. Revise o total e clique novamente para finalizar.";
+                    return;
+                }
+            } catch (error) {
+                if (cartStatus) cartStatus.textContent = "Não foi possível confirmar os preços. Tente novamente.";
+                console.error(error);
+                return;
+            } finally {
+                checkoutButton.disabled = cart.some(item => item.unavailable);
+            }
+
             let msg = "Olá, Empório GE! Gostaria de fazer o seguinte pedido:\n\n";
             cart.forEach(item => {
                 const option = item.corte && !["Padrão", "Oferta"].includes(item.corte) ? ` (${item.corte})` : "";
@@ -269,7 +292,7 @@ document.querySelectorAll("[data-add-offer]").forEach((button) => {
             });
             msg += `*TOTAL DO PEDIDO: ${formatBRL(totalPrice())}*`;
             
-            window.open(`https://wa.me/5581986836253?text=${encodeURIComponent(msg)}`, "_blank", "noopener,noreferrer");
+            window.location.assign(`https://wa.me/5581986836253?text=${encodeURIComponent(msg)}`);
         });
     }
 

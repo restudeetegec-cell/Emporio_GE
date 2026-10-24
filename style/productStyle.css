@@ -71,6 +71,12 @@ height: 40%;
     align-items: start;
 }
 
+.product-page__grid[hidden],
+.product-form__field[hidden],
+.product-info__price-original[hidden] {
+    display: none;
+}
+
 /* ==========================================================================
    4. GALERIA DE IMAGENS
    ========================================================================== */
@@ -174,6 +180,13 @@ height: 40%;
     font-size: 14px;
     font-weight: 400;
     color: #888;
+}
+
+.product-info__price .product-info__price-current {
+    font-family: "Courier New", monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: goldenrod;
 }
 
 /* ==========================================================================

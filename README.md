@@ -45,14 +45,14 @@ O design foi inspirado em referências de restaurantes premium, adotando um tema
 ## ✨ Funcionalidades
 
 - **🛍️ Navegação e Catálogo:**
-- Página inicial dinâmica: slider de destaque, ofertas e catálogo interativo.
+- Página inicial: slider de destaque, ofertas e catálogo; os produtos e ofertas são carregados da API.
 - Busca de produtos: filtro em tempo real para facilitar a localização dos itens.
-- Páginas individuais: apresentação detalhada dos produtos, com galeria de imagens, miniaturas e informações sobre os cortes disponíveis.
+- Página de produto: descrição, preço vigente, galeria e opções carregados da API.
 
 - **🛒 Carrinho de Compras:**
 - Persistência de dados: utilização do localStorage para manter os itens do carrinho durante a navegação entre páginas.
 - Carrinho flutuante: visualização rápida dos itens, com prévia lateral interativa e contador atualizado em tempo real.
-- Revisão do pedido: página dedicada para conferir os produtos, as quantidades, os subtotais e o valor total.
+- Revisão do pedido: página dedicada que confirma preços e disponibilidade na API antes da finalização.
 
 - **📲 Finalização e Responsividade:**
 - Checkout via WhatsApp: geração de uma mensagem organizada com os produtos, as quantidades e os valores do pedido.
@@ -71,19 +71,25 @@ O design foi inspirado em referências de restaurantes premium, adotando um tema
 
 ## 🛠️ Como rodar o projeto localmente
 
-O projeto é construído apenas com tecnologias front-end nativas, sem a necessidade de *build steps* (Webpack, Vite, etc.).
+O front-end usa HTML, CSS e JavaScript sem etapa de build. Produtos e ofertas são lidos dos endpoints públicos `GET /v1/products` e `GET /v1/offers` do backend `man`; as rotas de escrita continuam exigindo autenticação.
 
-1. **Clone o repositório:**
+1. No diretório do backend `man`, aplique as migrações, envie as imagens para a Blob store configurada e importe o catálogo inicial:
+
    ```bash
-   git clone https://github.com/restudeetegec-cell/Emporio_GE.git
+   .venv/bin/alembic upgrade head
+   PYTHONPATH=. .venv/bin/python scripts/migrate_storefront_images.py
+   PYTHONPATH=. .venv/bin/python scripts/seed_storefront.py
+   ```
 
-2. **Acesse a pasta do projeto:**
-    ```bash
-    cd Emporio_GE
+   A importação cria 13 produtos e sete ofertas com validade de sete dias a partir da execução. As 27 imagens dos produtos ficam na Vercel Blob pública configurada; o arquivo local `scripts/data/blob_urls.json` do backend associa cada imagem à sua URL e é gerado pela migração. Reexecutar esses comandos não duplica imagens, produtos nem ofertas ainda ativas. O backend precisa estar em execução na porta `8000`.
 
-3. **Inicie um servidor local:**
-    ```bash
-    python -m http.server 5500
+2. Neste diretório, inicie o servidor do front-end e abra `http://127.0.0.1:5500`:
+
+   ```bash
+   python -m http.server 5500
+   ```
+
+3. Para usar outra API, altere a URL absoluta em `js/config.js`. Os preços da API são inteiros em centavos; o front-end os formata em reais. As imagens de produtos e ofertas são URLs públicas retornadas pela API; logo e banners continuam locais.
 
 ## 📁 Estrutura de Pastas
 
@@ -94,17 +100,20 @@ Emporio_GE/
 ├── images/                  # Imagens dos produtos, logo e backgrounds
 ├── js/                      # Scripts e funcionalidades JavaScript
 │   ├── carrinho.js           # Gerenciamento do carrinho e localStorage
+│   ├── api.js                # Cliente HTTP e utilitários do catálogo
+│   ├── config.js             # URL da API
 │   ├── header.js             # Menu mobile e recursos de acessibilidade
 │   ├── hero.js               # Slider automático da página inicial
-│   ├── product.js            # Galeria de produtos e ações do carrinho
-│   └── script.js             # Catálogo, busca e carrossel de ofertas
-├── page products/            # Páginas HTML individuais dos produtos
+│   ├── product.js            # Página dinâmica de produto
+│   └── script.js             # Catálogo, busca e ofertas da API
+├── page products/            # Redirecionamentos dos endereços antigos
 ├── style/                    # Arquivos de estilização CSS
 │   ├── main.css              # Estilos globais, variáveis e catálogo
 │   ├── header.css            # Estilos da navegação
 │   ├── cart.css              # Carrinho e prévia lateral
 │   └── productStyle.css      # Estilos das páginas de produto
 ├── index.html                # Página inicial
+├── produto.html              # Detalhes do produto por ID da API
 ├── carrinho/
 │   └── carrinho.html         # Página do carrinho e finalização do pedido
 └── README.md                 # Documentação do projeto
